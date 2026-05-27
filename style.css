@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  background: #0b0c10;
+  color: #e9eefc;
+  font-family: system-ui, -apple-system, "Noto Sans JP", "Yu Gothic", sans-serif;
+  line-height: 1.8;
+}
+
+.wrap {
+  width: min(900px, calc(100% - 32px));
+  margin: 48px auto;
+}
+
+.label {
+  color: #8ef0d4;
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 42px;
+  margin: 0 0 24px;
+}
+
+h2 {
+  margin-top: 40px;
+  border-bottom: 1px solid #2a2f3f;
+  padding-bottom: 6px;
+}
+
+a {
+  color: #7aa2ff;
+}
+
+.note {
+  margin-top: 48px;
+  color: #a8b1c9;
+  font-size: 13px;
+}
