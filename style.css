@@ -513,3 +513,313 @@ h1 {
     margin-inline: 0;
   }
 }
+
+/* ===== 追加調整：ロゴ・フォント・スライダー・制作記録・スタッフ ===== */
+
+body {
+  font-family:
+    "Zen Kaku Gothic New",
+    system-ui,
+    -apple-system,
+    "Noto Sans JP",
+    "Yu Gothic",
+    sans-serif;
+}
+
+h2,
+h3,
+h4,
+.site-title,
+.section-kicker {
+  font-family:
+    "Noto Serif JP",
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    serif;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.title-logo-frame {
+  width: min(760px, 100%);
+  height: clamp(210px, 38vw, 340px);
+  margin: 6px auto 24px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  filter:
+    drop-shadow(0 16px 22px rgba(0, 0, 0, 0.45))
+    drop-shadow(0 0 18px rgba(142, 240, 212, 0.22));
+}
+
+.title-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: translateY(-4px);
+}
+
+.center-text {
+  text-align: center;
+}
+
+/* スクリーンショットスライダー */
+.screenshot-slider {
+  position: relative;
+  width: min(900px, 100%);
+  aspect-ratio: 16 / 9;
+  margin: 20px auto 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top left, rgba(142, 240, 212, 0.08), transparent 45%),
+    radial-gradient(circle at bottom right, rgba(122, 162, 255, 0.10), transparent 48%),
+    rgba(0, 0, 0, 0.18);
+  box-shadow: var(--shadow);
+}
+
+.screenshot-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.015);
+  transition:
+    opacity 900ms ease,
+    transform 1200ms ease;
+}
+
+.screenshot-slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
+}
+
+.screenshot-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.screenshot-slide .placeholder-text {
+  display: none;
+}
+
+.screenshot-slide.is-placeholder,
+.screenshot-slide:not(:has(img)) {
+  display: grid;
+  place-items: center;
+}
+
+.screenshot-slide.is-placeholder .placeholder-text,
+.screenshot-slide:not(:has(img)) .placeholder-text {
+  display: block;
+  color: var(--muted);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.slider-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  z-index: 3;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.slider-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(238, 243, 255, 0.35);
+  transition:
+    width 300ms ease,
+    background 300ms ease;
+}
+
+.slider-dots span.is-active {
+  width: 24px;
+  background: var(--accent);
+}
+
+/* 制作記録 */
+.activity-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.9fr 0.9fr;
+  gap: 18px;
+  max-width: 1080px;
+  margin-inline: auto;
+}
+
+.activity-card {
+  background: rgba(21, 25, 37, 0.88);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+
+.activity-card h3 {
+  margin-top: 0;
+  border-bottom: 1px solid rgba(45, 52, 71, 0.72);
+  padding-bottom: 10px;
+}
+
+.mini-log {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(45, 52, 71, 0.55);
+}
+
+.mini-log:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.mini-log time,
+.tweet-list time,
+.update-list time {
+  display: inline-block;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.mini-log h4 {
+  margin: 0 0 6px;
+}
+
+.mini-log p {
+  margin: 0;
+}
+
+.tweet-list,
+.update-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tweet-list li,
+.update-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(45, 52, 71, 0.55);
+}
+
+.tweet-list li:last-child,
+.update-list li:last-child {
+  border-bottom: none;
+}
+
+.tweet-list p {
+  margin: 0;
+}
+
+.update-list span {
+  display: block;
+}
+
+/* スタッフカード */
+.staff-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  max-width: 980px;
+  margin-inline: auto;
+}
+
+.staff-card {
+  background:
+    linear-gradient(145deg, rgba(142, 240, 212, 0.08), transparent 38%),
+    rgba(21, 25, 37, 0.88);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px;
+  box-shadow: var(--shadow);
+}
+
+.staff-card.main-staff {
+  border-color: rgba(142, 240, 212, 0.28);
+}
+
+.staff-role {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  margin: 0 0 8px;
+}
+
+.staff-card h3 {
+  margin: 0 0 12px;
+  font-size: 28px;
+}
+
+.related-work {
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid rgba(45, 52, 71, 0.72);
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.16);
+}
+
+.related-work h4 {
+  margin: 0 0 8px;
+}
+
+.text-link {
+  display: inline-block;
+  margin-top: 6px;
+  font-weight: 800;
+}
+
+.staff-note {
+  max-width: 980px;
+  margin: 18px auto 0;
+}
+
+/* 既存の中央寄せ調整と合わせる */
+.hero-inner {
+  max-width: 920px;
+}
+
+.lead {
+  max-width: 780px;
+}
+
+/* スマホ調整 */
+@media (max-width: 900px) {
+  .activity-grid,
+  .staff-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .title-logo-frame {
+    height: clamp(170px, 42vw, 260px);
+  }
+}
+
+@media (max-width: 560px) {
+  .title-logo-frame {
+    height: 165px;
+  }
+
+  .site-nav a {
+    font-size: 13px;
+  }
+
+  .activity-card,
+  .staff-card {
+    padding: 18px;
+  }
+}
