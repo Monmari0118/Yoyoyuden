@@ -154,7 +154,6 @@ p {
   white-space: nowrap;
 }
 
-/* 新しい中央配置ロゴ用 */
 .title-logo-frame {
   width: min(760px, 100%);
   margin: 10px auto 28px;
@@ -307,7 +306,11 @@ p {
 .card p,
 .download-panel p,
 .log p,
-.notice p {
+.notice p,
+.music-card p,
+.album-box p,
+.secret-card p,
+.contact-card p {
   font-size: 16px;
   line-height: 1.95;
 }
@@ -425,6 +428,96 @@ p {
 
 .download-action {
   text-align: center;
+}
+
+.download-count {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+/* ===== 音楽室 ===== */
+
+.music-layout {
+  display: grid;
+  grid-template-columns: 1.35fr 0.75fr;
+  gap: 18px;
+  max-width: 1080px;
+  margin-inline: auto;
+}
+
+.music-list {
+  display: grid;
+  gap: 16px;
+}
+
+.music-card,
+.album-box {
+  background: rgba(21, 25, 37, 0.88);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+
+.music-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.music-number {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  margin: 0 0 4px;
+}
+
+.music-card h3,
+.album-box h3 {
+  margin: 0 0 8px;
+}
+
+.music-card p {
+  margin-top: 0;
+}
+
+.music-card audio {
+  width: 100%;
+}
+
+/* ===== 秘密のパスワード ===== */
+
+.secret-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  max-width: 980px;
+  margin-inline: auto;
+}
+
+.secret-card {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(142, 240, 212, 0.12), transparent 48%),
+    rgba(21, 25, 37, 0.88);
+  border: 1px solid rgba(142, 240, 212, 0.24);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.secret-label {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  margin: 0 0 8px;
+}
+
+.secret-card h3 {
+  margin: 0 0 10px;
 }
 
 /* ===== 制作記録 ===== */
@@ -593,6 +686,28 @@ p {
   margin: 0;
 }
 
+/* ===== 問い合わせ ===== */
+
+.contact-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  max-width: 980px;
+  margin-inline: auto;
+}
+
+.contact-card > div {
+  background: rgba(21, 25, 37, 0.88);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+
+.contact-card h3 {
+  margin-top: 0;
+}
+
 /* ===== 注意事項・フッター ===== */
 
 .notice-section {
@@ -629,11 +744,14 @@ p {
 
 /* ===== スマホ調整 ===== */
 
-@media (max-width: 900px) {
+@media (max-width: 980px) {
+  .music-layout,
   .activity-grid,
   .staff-cards,
+  .contact-card,
   .grid.two,
-  .download-panel {
+  .download-panel,
+  .secret-grid {
     grid-template-columns: 1fr;
   }
 
@@ -710,7 +828,11 @@ p {
   .staff-card,
   .card,
   .download-panel,
-  .log {
+  .log,
+  .music-card,
+  .album-box,
+  .secret-card,
+  .contact-card > div {
     padding: 18px;
   }
 
