@@ -319,8 +319,9 @@ h4,
 .album-box p,
 .secret-card p,
 .contact-card p,
-.work-card p,
-.history-item p {
+.work-body p,
+.history-item p,
+.voice-item p {
   font-size: 16px;
   line-height: 1.95;
 }
@@ -604,7 +605,8 @@ h4,
 .mini-log time,
 .tweet-list time,
 .update-list time,
-.history-item time {
+.history-item time,
+.voice-item time {
   display: inline-block;
   color: var(--accent);
   font-size: 13px;
@@ -646,53 +648,6 @@ h4,
   display: block;
 }
 
-/* ===== 関連作品 ===== */
-
-.related-grid {
-  display: grid;
-  gap: 18px;
-  max-width: 980px;
-  margin-inline: auto;
-}
-
-.work-card {
-  display: grid;
-  grid-template-columns: 0.75fr 1.25fr;
-  gap: 22px;
-  background:
-    linear-gradient(145deg, rgba(122, 162, 255, 0.08), transparent 42%),
-    rgba(21, 25, 37, 0.88);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 22px;
-  box-shadow: var(--shadow);
-}
-
-.work-thumb {
-  min-height: 210px;
-  border: 1px dashed rgba(170, 181, 206, 0.38);
-  border-radius: 14px;
-  display: grid;
-  place-items: center;
-  color: var(--muted);
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  background:
-    radial-gradient(circle at top left, rgba(142, 240, 212, 0.10), transparent 45%),
-    rgba(0, 0, 0, 0.18);
-}
-
-.work-body h3 {
-  margin: 0 0 10px;
-}
-
-.work-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 16px;
-}
-
 /* ===== スタッフ ===== */
 
 .staff-cards {
@@ -732,18 +687,6 @@ h4,
 .staff-card h3 {
   margin: 0 0 12px;
   font-size: 28px;
-}
-
-.related-work {
-  margin-top: 18px;
-  padding: 16px;
-  border: 1px solid rgba(45, 52, 71, 0.72);
-  border-radius: 14px;
-  background: rgba(0, 0, 0, 0.16);
-}
-
-.related-work h4 {
-  margin: 0 0 8px;
 }
 
 .text-link {
@@ -806,20 +749,23 @@ h4,
   margin-top: 0;
 }
 
-/* ===== 更新履歴ページ ===== */
+/* ===== 更新履歴・ひとこと・みゃがページ ===== */
 
-.history-page {
+.history-page,
+.myaga-page {
   min-height: 72vh;
 }
 
-.history-list {
+.history-list,
+.voice-list {
   display: grid;
   gap: 16px;
   max-width: 860px;
   margin-inline: auto;
 }
 
-.history-item {
+.history-item,
+.voice-item {
   background: rgba(21, 25, 37, 0.88);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -832,8 +778,49 @@ h4,
   font-size: 22px;
 }
 
-.history-item p {
+.history-item p,
+.voice-item p {
   margin-bottom: 0;
+}
+
+.myaga-work {
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+  gap: 22px;
+  max-width: 980px;
+  margin-inline: auto;
+  background:
+    linear-gradient(145deg, rgba(122, 162, 255, 0.08), transparent 42%),
+    rgba(21, 25, 37, 0.88);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+
+.work-thumb {
+  min-height: 210px;
+  border: 1px dashed rgba(170, 181, 206, 0.38);
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  background:
+    radial-gradient(circle at top left, rgba(142, 240, 212, 0.10), transparent 45%),
+    rgba(0, 0, 0, 0.18);
+}
+
+.work-body h2 {
+  margin: 0 0 10px;
+}
+
+.work-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
 }
 
 .center-actions {
@@ -888,7 +875,7 @@ h4,
   .contact-card.two-column,
   .grid.two,
   .download-panel,
-  .work-card {
+  .myaga-work {
     grid-template-columns: 1fr;
   }
 
@@ -970,8 +957,9 @@ h4,
   .album-box,
   .secret-card,
   .contact-card > div,
-  .work-card,
-  .history-item {
+  .history-item,
+  .voice-item,
+  .myaga-work {
     padding: 18px;
   }
 
