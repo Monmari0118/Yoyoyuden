@@ -58,24 +58,25 @@ code {
   margin-inline: auto;
 }
 
-h2,
-h3,
-h4,
-.site-title,
-.section-kicker {
-  font-family:
-    "Noto Serif JP",
-    "Yu Mincho",
-    "Hiragino Mincho ProN",
-    serif;
-}
-
 h1,
 h2,
 h3,
 h4,
 p {
   overflow-wrap: anywhere;
+}
+
+h2,
+h3,
+h4,
+.site-title,
+.section-kicker,
+.page-title {
+  font-family:
+    "Noto Serif JP",
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    serif;
 }
 
 /* ===== ヘッダー ===== */
@@ -256,7 +257,8 @@ p {
   margin-bottom: 30px;
 }
 
-.section-head h2 {
+.section-head h2,
+.page-title {
   font-size: clamp(28px, 4vw, 42px);
   line-height: 1.2;
   margin: 0;
@@ -316,7 +318,9 @@ p {
 .music-card p,
 .album-box p,
 .secret-card p,
-.contact-card p {
+.contact-card p,
+.work-card p,
+.history-item p {
   font-size: 16px;
   line-height: 1.95;
 }
@@ -538,6 +542,29 @@ p {
   padding-bottom: 10px;
 }
 
+.card-head-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid rgba(45, 52, 71, 0.72);
+  margin-bottom: 10px;
+}
+
+.card-head-row h3 {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.small-link {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
 .scroll-card {
   display: flex;
   flex-direction: column;
@@ -576,7 +603,8 @@ p {
 
 .mini-log time,
 .tweet-list time,
-.update-list time {
+.update-list time,
+.history-item time {
   display: inline-block;
   color: var(--accent);
   font-size: 13px;
@@ -618,6 +646,53 @@ p {
   display: block;
 }
 
+/* ===== 関連作品 ===== */
+
+.related-grid {
+  display: grid;
+  gap: 18px;
+  max-width: 980px;
+  margin-inline: auto;
+}
+
+.work-card {
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+  gap: 22px;
+  background:
+    linear-gradient(145deg, rgba(122, 162, 255, 0.08), transparent 42%),
+    rgba(21, 25, 37, 0.88);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+
+.work-thumb {
+  min-height: 210px;
+  border: 1px dashed rgba(170, 181, 206, 0.38);
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  background:
+    radial-gradient(circle at top left, rgba(142, 240, 212, 0.10), transparent 45%),
+    rgba(0, 0, 0, 0.18);
+}
+
+.work-body h3 {
+  margin: 0 0 10px;
+}
+
+.work-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
 /* ===== スタッフ ===== */
 
 .staff-cards {
@@ -626,6 +701,10 @@ p {
   gap: 18px;
   max-width: 980px;
   margin-inline: auto;
+}
+
+.staff-cards.three {
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .staff-card {
@@ -727,6 +806,44 @@ p {
   margin-top: 0;
 }
 
+/* ===== 更新履歴ページ ===== */
+
+.history-page {
+  min-height: 72vh;
+}
+
+.history-list {
+  display: grid;
+  gap: 16px;
+  max-width: 860px;
+  margin-inline: auto;
+}
+
+.history-item {
+  background: rgba(21, 25, 37, 0.88);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.history-item h2 {
+  margin: 0 0 8px;
+  font-size: 22px;
+}
+
+.history-item p {
+  margin-bottom: 0;
+}
+
+.center-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
 /* ===== 注意事項・フッター ===== */
 
 .notice-section {
@@ -767,9 +884,11 @@ p {
   .music-layout,
   .activity-grid.two-column,
   .staff-cards,
+  .staff-cards.three,
   .contact-card.two-column,
   .grid.two,
-  .download-panel {
+  .download-panel,
+  .work-card {
     grid-template-columns: 1fr;
   }
 
@@ -850,7 +969,9 @@ p {
   .music-card,
   .album-box,
   .secret-card,
-  .contact-card > div {
+  .contact-card > div,
+  .work-card,
+  .history-item {
     padding: 18px;
   }
 
@@ -860,5 +981,11 @@ p {
 
   .scroll-area {
     max-height: 360px;
+  }
+
+  .card-head-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
   }
 }

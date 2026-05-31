@@ -29,6 +29,7 @@
         <a href="#music">音楽室</a>
         <a href="#secret">秘密のパスワード</a>
         <a href="#activity">制作記録</a>
+        <a href="#related">関連作品</a>
         <a href="#staff">スタッフ</a>
         <a href="#contact">問い合わせ</a>
       </nav>
@@ -266,10 +267,7 @@
         </div>
 
         <div class="secret-list">
-          <!--
-            合言葉を追加するときは、この下に secret-card を追加。
-            既存の日本語文面を直接入れていく想定。
-          -->
+          <!-- 合言葉を追加するときは、この下に secret-card を追加 -->
         </div>
 
         <p class="note center-text">
@@ -303,7 +301,10 @@
           </section>
 
           <section class="activity-card scroll-card">
-            <h3>更新履歴</h3>
+            <div class="card-head-row">
+              <h3>更新履歴</h3>
+              <a class="small-link" href="history.html">すべて見る</a>
+            </div>
 
             <div class="scroll-area">
               <article class="mini-log">
@@ -315,8 +316,9 @@
                 </p>
               </article>
 
+              <ul class="update-list">
                 <li>
-                  <time datetime="2026-05-20">2026.04.02</time>
+                  <time datetime="2026-04-02">2026.04.02</time>
                   <span>制作環境を整理中</span>
                 </li>
               </ul>
@@ -326,14 +328,44 @@
       </div>
     </section>
 
-    <section id="staff" class="section">
+    <section id="related" class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-kicker">Related Works</p>
+          <h2>関連作品</h2>
+        </div>
+
+        <div class="related-grid">
+          <article class="work-card">
+            <div class="work-thumb">
+              <span>MYAGA GAME</span>
+            </div>
+
+            <div class="work-body">
+              <p class="staff-role">みゃが制作ゲーム</p>
+              <h3>作品名未定</h3>
+              <p>
+                みゃがが昔作ってた個人ゲームも置いておく場所です。
+              </p>
+
+              <div class="work-actions">
+                <a class="button" href="#" target="_blank" rel="noopener">紹介ページ準備中</a>
+                <a class="button" href="#" target="_blank" rel="noopener">ダウンロード準備中</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="staff" class="section alt">
       <div class="container">
         <div class="section-head">
           <p class="section-kicker">Staff</p>
           <h2>スタッフ</h2>
         </div>
 
-        <div class="staff-cards">
+        <div class="staff-cards three">
           <article class="staff-card main-staff">
             <p class="staff-role">企画・制作 / シナリオ / アレンジ音楽</p>
             <h3>モン魔理</h3>
@@ -350,15 +382,11 @@
               立ち絵や制作面で協力。
               東方葉々癒伝の雰囲気作りに関わっています。
             </p>
+          </article>
 
-            <div class="related-work">
-              <h4>みゃが制作ゲーム</h4>
-              <p>
-                みゃがが制作しているゲームも、こちらで軽く紹介予定
-                詳細が決まり次第、作品名・概要・リンクを掲載
-              </p>
-              <a class="text-link" href="#" target="_blank" rel="noopener">関連作品リンク（準備中）</a>
-            </div>
+          <article class="staff-card">
+            <p class="staff-role">立ち絵</p>
+            <h3>てんごく</h3>
           </article>
         </div>
 
