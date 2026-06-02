@@ -1,5 +1,5 @@
 :root {
-  --bg: #0b0c10;
+  --bg: #06110c;
   --bg-soft: #10131b;
   --panel: #151925;
   --panel-strong: #1a2030;
@@ -23,8 +23,10 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at top left, rgba(142, 240, 212, 0.10), transparent 34rem),
-    radial-gradient(circle at top right, rgba(122, 162, 255, 0.10), transparent 32rem),
+    linear-gradient(rgba(4, 14, 9, 0.86), rgba(4, 14, 9, 0.94)),
+    radial-gradient(circle at top left, rgba(142, 240, 212, 0.13), transparent 34rem),
+    radial-gradient(circle at top right, rgba(77, 160, 98, 0.13), transparent 32rem),
+    url("assets/bg-leaves.png") center top / cover fixed,
     var(--bg);
   color: var(--text);
   font-family:
@@ -35,6 +37,18 @@ body {
     "Yu Gothic",
     sans-serif;
   line-height: 1.8;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(142, 240, 212, 0.08), transparent 24rem),
+    radial-gradient(circle at 82% 18%, rgba(96, 180, 92, 0.08), transparent 22rem),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.025), transparent 42%);
+  z-index: -1;
 }
 
 a {
@@ -85,8 +99,8 @@ h4,
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(11, 12, 16, 0.78);
-  border-bottom: 1px solid rgba(45, 52, 71, 0.75);
+  background: rgba(6, 17, 12, 0.82);
+  border-bottom: 1px solid rgba(55, 79, 62, 0.75);
   backdrop-filter: blur(14px);
 }
 
@@ -122,7 +136,7 @@ h4,
 
 .site-nav a:hover {
   color: var(--text);
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(142, 240, 212, 0.08);
 }
 
 /* ===== ヒーロー ===== */
@@ -195,9 +209,9 @@ h4,
   justify-content: center;
   min-height: 44px;
   padding: 10px 18px;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(96, 132, 100, 0.62);
   border-radius: 999px;
-  background: var(--panel);
+  background: rgba(21, 25, 37, 0.88);
   color: var(--text);
   text-decoration: none;
   font-weight: 700;
@@ -205,7 +219,7 @@ h4,
 }
 
 .button.primary {
-  background: linear-gradient(135deg, rgba(142, 240, 212, 0.95), rgba(122, 162, 255, 0.95));
+  background: linear-gradient(135deg, rgba(142, 240, 212, 0.95), rgba(112, 198, 112, 0.95));
   color: #081015;
   border-color: transparent;
 }
@@ -224,8 +238,8 @@ h4,
 }
 
 .quick-info div {
-  background: rgba(21, 25, 37, 0.72);
-  border: 1px solid var(--line);
+  background: rgba(17, 29, 22, 0.74);
+  border: 1px solid rgba(96, 132, 100, 0.62);
   border-radius: var(--radius);
   padding: 16px;
 }
@@ -247,9 +261,9 @@ h4,
 }
 
 .section.alt {
-  background: rgba(255, 255, 255, 0.025);
-  border-top: 1px solid rgba(45, 52, 71, 0.55);
-  border-bottom: 1px solid rgba(45, 52, 71, 0.55);
+  background: rgba(9, 28, 18, 0.28);
+  border-top: 1px solid rgba(60, 92, 65, 0.55);
+  border-bottom: 1px solid rgba(60, 92, 65, 0.55);
 }
 
 .section-head {
@@ -268,7 +282,8 @@ h4,
   text-align: center;
 }
 
-.grid {
+.grid,
+.download-grid {
   display: grid;
   gap: 18px;
 }
@@ -289,7 +304,7 @@ h4,
 .download-panel,
 .log {
   background: rgba(21, 25, 37, 0.86);
-  border: 1px solid var(--line);
+  border: 1px solid rgba(96, 132, 100, 0.62);
   border-radius: var(--radius);
   padding: 26px;
   box-shadow: var(--shadow);
@@ -319,9 +334,12 @@ h4,
 .album-box p,
 .secret-card p,
 .contact-card p,
+.link-card p,
 .work-body p,
 .history-item p,
-.voice-item p {
+.voice-item p,
+.log-article p,
+.zip-card p {
   font-size: 16px;
   line-height: 1.95;
 }
@@ -343,11 +361,11 @@ h4,
   aspect-ratio: 16 / 9;
   margin: 20px auto 12px;
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(96, 132, 100, 0.62);
   border-radius: 18px;
   background:
     radial-gradient(circle at top left, rgba(142, 240, 212, 0.08), transparent 45%),
-    radial-gradient(circle at bottom right, rgba(122, 162, 255, 0.10), transparent 48%),
+    radial-gradient(circle at bottom right, rgba(112, 198, 112, 0.10), transparent 48%),
     rgba(0, 0, 0, 0.18);
   box-shadow: var(--shadow);
 }
@@ -417,13 +435,18 @@ h4,
 
 /* ===== ダウンロード ===== */
 
+.download-grid {
+  max-width: 980px;
+  margin-inline: auto;
+}
+
 .download-panel {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 24px;
   align-items: center;
-  max-width: 920px;
-  margin: 0 auto 18px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .download-info {
@@ -434,7 +457,7 @@ h4,
 
 .download-info li {
   padding: 6px 0;
-  border-bottom: 1px solid rgba(45, 52, 71, 0.65);
+  border-bottom: 1px solid rgba(96, 132, 100, 0.48);
 }
 
 .download-action {
@@ -451,15 +474,21 @@ h4,
   margin-inline: auto;
 }
 
+.music-layout.compact {
+  align-items: start;
+}
+
 .music-list {
   display: grid;
   gap: 16px;
 }
 
 .music-card,
-.album-box {
+.album-box,
+.zip-card,
+.music-page-block {
   background: rgba(21, 25, 37, 0.88);
-  border: 1px solid var(--line);
+  border: 1px solid rgba(96, 132, 100, 0.62);
   border-radius: var(--radius);
   padding: 22px;
   box-shadow: var(--shadow);
@@ -479,12 +508,29 @@ h4,
   margin: 0;
 }
 
-.album-box h3 {
+.album-box h3,
+.music-page-block h2,
+.zip-card h3 {
   margin: 0 0 8px;
 }
 
 .music-card audio {
   width: 100%;
+}
+
+.album-download-list,
+.zip-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.music-page-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  max-width: 1080px;
+  margin-inline: auto;
 }
 
 /* ===== 秘密のパスワード ===== */
@@ -531,7 +577,7 @@ h4,
 
 .activity-card {
   background: rgba(21, 25, 37, 0.88);
-  border: 1px solid var(--line);
+  border: 1px solid rgba(96, 132, 100, 0.62);
   border-radius: var(--radius);
   padding: 22px;
   box-shadow: var(--shadow);
@@ -539,7 +585,7 @@ h4,
 
 .activity-card h3 {
   margin-top: 0;
-  border-bottom: 1px solid rgba(45, 52, 71, 0.72);
+  border-bottom: 1px solid rgba(96, 132, 100, 0.48);
   padding-bottom: 10px;
 }
 
@@ -548,7 +594,7 @@ h4,
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  border-bottom: 1px solid rgba(45, 52, 71, 0.72);
+  border-bottom: 1px solid rgba(96, 132, 100, 0.48);
   margin-bottom: 10px;
 }
 
@@ -558,7 +604,8 @@ h4,
   margin-bottom: 0;
 }
 
-.small-link {
+.small-link,
+.text-link {
   color: var(--accent);
   font-size: 13px;
   font-weight: 800;
@@ -594,7 +641,7 @@ h4,
 
 .mini-log {
   padding: 14px 0;
-  border-bottom: 1px solid rgba(45, 52, 71, 0.55);
+  border-bottom: 1px solid rgba(96, 132, 100, 0.48);
 }
 
 .mini-log:last-child {
@@ -606,7 +653,8 @@ h4,
 .tweet-list time,
 .update-list time,
 .history-item time,
-.voice-item time {
+.voice-item time,
+.log-article time {
   display: inline-block;
   color: var(--accent);
   font-size: 13px;
@@ -632,7 +680,7 @@ h4,
 .tweet-list li,
 .update-list li {
   padding: 12px 0;
-  border-bottom: 1px solid rgba(45, 52, 71, 0.55);
+  border-bottom: 1px solid rgba(96, 132, 100, 0.48);
 }
 
 .tweet-list li:last-child,
@@ -666,7 +714,7 @@ h4,
   background:
     linear-gradient(145deg, rgba(142, 240, 212, 0.08), transparent 38%),
     rgba(21, 25, 37, 0.88);
-  border: 1px solid var(--line);
+  border: 1px solid rgba(96, 132, 100, 0.62);
   border-radius: var(--radius);
   padding: 26px;
   box-shadow: var(--shadow);
@@ -689,12 +737,6 @@ h4,
   font-size: 28px;
 }
 
-.text-link {
-  display: inline-block;
-  margin-top: 6px;
-  font-weight: 800;
-}
-
 .staff-note {
   max-width: 980px;
   margin: 18px auto 0;
@@ -712,7 +754,7 @@ h4,
   grid-template-columns: 180px 1fr;
   gap: 18px;
   padding: 14px 0;
-  border-bottom: 1px solid rgba(45, 52, 71, 0.72);
+  border-bottom: 1px solid rgba(96, 132, 100, 0.48);
 }
 
 .staff-list div:last-child {
@@ -728,36 +770,46 @@ h4,
   margin: 0;
 }
 
-/* ===== 問い合わせ ===== */
+/* ===== 関連リンク・問い合わせ ===== */
 
+.link-grid,
 .contact-card {
   display: grid;
   gap: 18px;
-  max-width: 760px;
+  max-width: 860px;
   margin-inline: auto;
 }
 
+.link-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.link-card,
 .contact-card > div {
   background: rgba(21, 25, 37, 0.88);
-  border: 1px solid var(--line);
+  border: 1px solid rgba(96, 132, 100, 0.62);
   border-radius: var(--radius);
   padding: 22px;
   box-shadow: var(--shadow);
 }
 
+.link-card h3,
 .contact-card h3 {
   margin-top: 0;
 }
 
-/* ===== 更新履歴・ひとこと・みゃがページ ===== */
+/* ===== 個別ページ ===== */
 
 .history-page,
-.myaga-page {
+.myaga-page,
+.logs-page,
+.music-page {
   min-height: 72vh;
 }
 
 .history-list,
-.voice-list {
+.voice-list,
+.log-article-list {
   display: grid;
   gap: 16px;
   max-width: 860px;
@@ -765,21 +817,24 @@ h4,
 }
 
 .history-item,
-.voice-item {
+.voice-item,
+.log-article {
   background: rgba(21, 25, 37, 0.88);
-  border: 1px solid var(--line);
+  border: 1px solid rgba(96, 132, 100, 0.62);
   border-radius: var(--radius);
   padding: 24px;
   box-shadow: var(--shadow);
 }
 
-.history-item h2 {
+.history-item h2,
+.log-article h2 {
   margin: 0 0 8px;
   font-size: 22px;
 }
 
 .history-item p,
-.voice-item p {
+.voice-item p,
+.log-article p {
   margin-bottom: 0;
 }
 
@@ -792,7 +847,7 @@ h4,
   background:
     linear-gradient(145deg, rgba(122, 162, 255, 0.08), transparent 42%),
     rgba(21, 25, 37, 0.88);
-  border: 1px solid var(--line);
+  border: 1px solid rgba(96, 132, 100, 0.62);
   border-radius: var(--radius);
   padding: 22px;
   box-shadow: var(--shadow);
@@ -844,7 +899,7 @@ h4,
 }
 
 .site-footer {
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba(96, 132, 100, 0.48);
   background: rgba(0, 0, 0, 0.18);
   padding: 26px 0;
 }
@@ -869,13 +924,15 @@ h4,
 
 @media (max-width: 980px) {
   .music-layout,
+  .music-page-grid,
   .activity-grid.two-column,
   .staff-cards,
   .staff-cards.three,
   .contact-card.two-column,
   .grid.two,
   .download-panel,
-  .myaga-work {
+  .myaga-work,
+  .link-grid {
     grid-template-columns: 1fr;
   }
 
@@ -889,6 +946,15 @@ h4,
 
   .title-logo {
     width: min(100%, 680px);
+  }
+
+  body {
+    background:
+      linear-gradient(rgba(4, 14, 9, 0.88), rgba(4, 14, 9, 0.94)),
+      radial-gradient(circle at top left, rgba(142, 240, 212, 0.13), transparent 34rem),
+      radial-gradient(circle at top right, rgba(77, 160, 98, 0.13), transparent 32rem),
+      url("assets/bg-leaves.png") center top / cover,
+      var(--bg);
   }
 }
 
@@ -957,9 +1023,13 @@ h4,
   .album-box,
   .secret-card,
   .contact-card > div,
+  .link-card,
   .history-item,
   .voice-item,
-  .myaga-work {
+  .myaga-work,
+  .log-article,
+  .zip-card,
+  .music-page-block {
     padding: 18px;
   }
 
