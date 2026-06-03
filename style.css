@@ -341,8 +341,7 @@ h4,
 .log-article p,
 .zip-card p,
 .staff-profile p,
-.music-summary-card p,
-.logs-summary-card p,
+.music-preview-card p,
 .creator-body p {
   font-size: 16px;
   line-height: 1.95;
@@ -517,15 +516,12 @@ h4,
 
 /* ===== 音楽室 ===== */
 
-.music-summary-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+.music-preview-wrap {
   max-width: 980px;
   margin-inline: auto;
 }
 
-.music-summary-card,
+.music-preview-card,
 .music-card,
 .album-box,
 .zip-card,
@@ -537,22 +533,16 @@ h4,
   box-shadow: var(--shadow);
 }
 
-.music-summary-card h3,
-.album-box h3,
-.music-page-block h2,
-.zip-card h3 {
-  margin: 0 0 8px;
-}
-
-.music-list {
+.music-preview-list {
   display: grid;
-  gap: 16px;
+  gap: 12px;
 }
 
 .music-card {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
+  grid-template-columns: 120px 1fr;
+  gap: 14px;
+  align-items: center;
 }
 
 .music-number {
@@ -567,18 +557,19 @@ h4,
   width: 100%;
 }
 
-.album-download-list,
-.zip-list {
-  display: grid;
-  gap: 10px;
-  margin-top: 16px;
+.card-head-row.plain {
+  border-bottom: 1px solid rgba(96, 132, 100, 0.48);
+  margin-bottom: 16px;
 }
 
-.music-page-grid {
+.compact-actions {
+  margin-top: 18px;
+}
+
+.download-only-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-  max-width: 1080px;
+  gap: 16px;
+  max-width: 860px;
   margin-inline: auto;
 }
 
@@ -933,6 +924,11 @@ h4,
   box-shadow: var(--shadow);
 }
 
+.creator-profile.simple-profile {
+  display: block;
+  max-width: 780px;
+}
+
 .creator-thumb,
 .work-thumb {
   min-height: 260px;
@@ -948,6 +944,21 @@ h4,
     rgba(0, 0, 0, 0.18);
 }
 
+.image-thumb {
+  overflow: hidden;
+  border-style: solid;
+  padding: 0;
+}
+
+.image-thumb img {
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  object-fit: contain;
+  display: block;
+  background: rgba(0, 0, 0, 0.22);
+}
+
 .creator-body h2,
 .work-body h2 {
   margin: 0 0 10px;
@@ -958,26 +969,6 @@ h4,
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 16px;
-}
-
-.sample-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  max-width: 980px;
-  margin: 18px auto 0;
-}
-
-.sample-card {
-  min-height: 220px;
-  display: grid;
-  place-items: center;
-  background: rgba(21, 25, 37, 0.88);
-  border: 1px dashed rgba(170, 181, 206, 0.38);
-  border-radius: var(--radius);
-  color: var(--muted);
-  font-weight: 800;
-  box-shadow: var(--shadow);
 }
 
 .center-actions {
@@ -1025,8 +1016,7 @@ h4,
 /* ===== スマホ調整 ===== */
 
 @media (max-width: 980px) {
-  .music-summary-grid,
-  .music-page-grid,
+  .music-preview-card,
   .activity-grid.two-column,
   .staff-cards,
   .staff-cards.three,
@@ -1037,8 +1027,7 @@ h4,
   .creator-profile,
   .link-grid,
   .pv-grid,
-  .logs-summary-grid,
-  .sample-grid {
+  .logs-summary-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1099,6 +1088,10 @@ h4,
   .footer-inner {
     flex-direction: column;
   }
+
+  .music-card {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 560px) {
@@ -1137,8 +1130,7 @@ h4,
   .log-article,
   .logs-summary-card,
   .zip-card,
-  .music-page-block,
-  .music-summary-card,
+  .music-preview-card,
   .pv-card {
     padding: 18px;
   }
