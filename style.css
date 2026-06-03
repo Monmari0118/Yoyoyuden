@@ -1125,9 +1125,8 @@ h4,
   position: absolute;
   inset: 0;
   opacity: 0;
-  animation-name: tengokuIllustFade;
   animation-duration: 15s;
-  animation-timing-function: linear;
+  animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
 
@@ -1140,27 +1139,87 @@ h4,
 }
 
 .tengoku-illust-slide.illust-1 {
-  animation-delay: 0s;
+  animation-name: tengokuIllustFade1;
 }
 
 .tengoku-illust-slide.illust-2 {
-  animation-delay: 5s;
+  animation-name: tengokuIllustFade2;
 }
 
 .tengoku-illust-slide.illust-3 {
-  animation-delay: 10s;
+  animation-name: tengokuIllustFade3;
 }
 
-@keyframes tengokuIllustFade {
+@keyframes tengokuIllustFade1 {
   0% {
     opacity: 1;
   }
 
-  29% {
+  27% {
     opacity: 1;
   }
 
-  32% {
+  34% {
+    opacity: 0;
+  }
+
+  90% {
+    opacity: 0;
+  }
+
+  97% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes tengokuIllustFade2 {
+  0% {
+    opacity: 0;
+  }
+
+  27% {
+    opacity: 0;
+  }
+
+  34% {
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  67% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes tengokuIllustFade3 {
+  0% {
+    opacity: 0;
+  }
+
+  60% {
+    opacity: 0;
+  }
+
+  67% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  97% {
     opacity: 0;
   }
 
