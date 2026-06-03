@@ -1230,3 +1230,22 @@ h4,
     opacity: 0;
   }
 }
+
+/* ===== ダウンロードボタン中央寄せ ===== */
+
+.download-action {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+@media (max-width: 980px) {
+  .download-action {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
