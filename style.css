@@ -203,6 +203,8 @@ h4,
   margin-top: 32px;
 }
 
+/* ===== ボタン ===== */
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -228,6 +230,8 @@ h4,
   cursor: not-allowed;
   opacity: 0.65;
 }
+
+/* ===== クイック情報 ===== */
 
 .quick-info {
   display: grid;
@@ -342,7 +346,8 @@ h4,
 .zip-card p,
 .staff-profile p,
 .music-preview-card p,
-.creator-body p {
+.creator-body p,
+.logs-summary-card p {
   font-size: 16px;
   line-height: 1.95;
 }
@@ -494,7 +499,7 @@ h4,
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 24px;
-  align-items: center;
+  align-items: stretch;
   margin: 0 auto;
   width: 100%;
 }
@@ -511,6 +516,12 @@ h4,
 }
 
 .download-action {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   text-align: center;
 }
 
@@ -838,7 +849,20 @@ h4,
   margin-top: 0;
 }
 
-/* ===== 個別ページ ===== */
+.centered-link-card {
+  text-align: center;
+}
+
+.centered-link-card .button {
+  margin-inline: auto;
+}
+
+.contact-card.three-column {
+  max-width: 980px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* ===== 個別ページ共通 ===== */
 
 .history-page,
 .myaga-page,
@@ -907,6 +931,8 @@ h4,
   display: grid;
   gap: 1em;
 }
+
+/* ===== みゃが・てんごくページ ===== */
 
 .myaga-work,
 .creator-profile {
@@ -979,6 +1005,74 @@ h4,
   margin-top: 16px;
 }
 
+/* ===== みゃが制作ゲーム スクリーンショット ===== */
+
+.myaga-screenshot-slider {
+  position: relative;
+  width: min(900px, 100%);
+  aspect-ratio: 4 / 3;
+  margin: 28px auto 0;
+  overflow: hidden;
+  border: 1px solid rgba(96, 132, 100, 0.62);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top left, rgba(142, 240, 212, 0.08), transparent 45%),
+    radial-gradient(circle at bottom right, rgba(112, 198, 112, 0.10), transparent 48%),
+    rgba(0, 0, 0, 0.38);
+  box-shadow: var(--shadow);
+}
+
+.myaga-screenshot-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: myagaScreenshotFade 12s infinite;
+}
+
+.myaga-screenshot-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.myaga-screenshot-slide.slide-1 {
+  animation-delay: 0s;
+}
+
+.myaga-screenshot-slide.slide-2 {
+  animation-delay: 4s;
+}
+
+.myaga-screenshot-slide.slide-3 {
+  animation-delay: 8s;
+}
+
+@keyframes myagaScreenshotFade {
+  0% {
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  38% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ===== 戻るボタンなど ===== */
+
 .center-actions {
   display: flex;
   justify-content: center;
@@ -1021,14 +1115,14 @@ h4,
   color: var(--muted);
 }
 
-/* ===== スマホ調整 ===== */
+/* ===== スマホ・タブレット調整 ===== */
 
 @media (max-width: 980px) {
-  .music-preview-card,
   .activity-grid.two-column,
   .staff-cards,
   .staff-cards.three,
   .contact-card.two-column,
+  .contact-card.three-column,
   .grid.two,
   .download-panel,
   .myaga-work,
@@ -1037,10 +1131,6 @@ h4,
   .pv-grid,
   .logs-summary-grid {
     grid-template-columns: 1fr;
-  }
-
-  .download-action {
-    text-align: left;
   }
 
   .title-logo-frame {
@@ -1163,89 +1253,5 @@ h4,
 
   .image-thumb img {
     max-height: 360px;
-  }
-}
-/* ===== みゃが制作ゲーム スクリーンショット ===== */
-
-.myaga-screenshot-slider {
-  position: relative;
-  width: min(900px, 100%);
-  aspect-ratio: 4 / 3;
-  margin: 28px auto 0;
-  overflow: hidden;
-  border: 1px solid rgba(96, 132, 100, 0.62);
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at top left, rgba(142, 240, 212, 0.08), transparent 45%),
-    radial-gradient(circle at bottom right, rgba(112, 198, 112, 0.10), transparent 48%),
-    rgba(0, 0, 0, 0.38);
-  box-shadow: var(--shadow);
-}
-
-.myaga-screenshot-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  animation: myagaScreenshotFade 12s infinite;
-}
-
-.myaga-screenshot-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  background: rgba(0, 0, 0, 0.35);
-}
-
-.myaga-screenshot-slide.slide-1 {
-  animation-delay: 0s;
-}
-
-.myaga-screenshot-slide.slide-2 {
-  animation-delay: 4s;
-}
-
-.myaga-screenshot-slide.slide-3 {
-  animation-delay: 8s;
-}
-
-@keyframes myagaScreenshotFade {
-  0% {
-    opacity: 0;
-  }
-
-  8% {
-    opacity: 1;
-  }
-
-  30% {
-    opacity: 1;
-  }
-
-  38% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-/* ===== ダウンロードボタン中央寄せ ===== */
-
-.download-action {
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  text-align: center;
-}
-
-@media (max-width: 980px) {
-  .download-action {
-    align-items: flex-start;
-    text-align: left;
   }
 }
