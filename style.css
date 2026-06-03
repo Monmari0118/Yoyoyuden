@@ -300,6 +300,11 @@ h4,
   grid-template-columns: repeat(2, 1fr);
 }
 
+.single-card-wrap {
+  max-width: 760px;
+  margin-inline: auto;
+}
+
 .card,
 .download-panel,
 .log {
@@ -339,7 +344,8 @@ h4,
 .history-item p,
 .voice-item p,
 .log-article p,
-.zip-card p {
+.zip-card p,
+.staff-profile p {
   font-size: 16px;
   line-height: 1.95;
 }
@@ -803,7 +809,8 @@ h4,
 .history-page,
 .myaga-page,
 .logs-page,
-.music-page {
+.music-page,
+.staff-page {
   min-height: 72vh;
 }
 
@@ -838,7 +845,13 @@ h4,
   margin-bottom: 0;
 }
 
-.myaga-work {
+.long-text {
+  display: grid;
+  gap: 1em;
+}
+
+.myaga-work,
+.staff-profile {
   display: grid;
   grid-template-columns: 0.75fr 1.25fr;
   gap: 22px;
@@ -851,6 +864,15 @@ h4,
   border-radius: var(--radius);
   padding: 22px;
   box-shadow: var(--shadow);
+}
+
+.staff-profile {
+  display: block;
+}
+
+.profile-card {
+  max-width: 760px;
+  margin-inline: auto;
 }
 
 .work-thumb {
@@ -932,6 +954,7 @@ h4,
   .grid.two,
   .download-panel,
   .myaga-work,
+  .staff-profile,
   .link-grid {
     grid-template-columns: 1fr;
   }
@@ -1027,6 +1050,7 @@ h4,
   .history-item,
   .voice-item,
   .myaga-work,
+  .staff-profile,
   .log-article,
   .zip-card,
   .music-page-block {
