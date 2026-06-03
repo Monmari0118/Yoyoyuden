@@ -504,6 +504,12 @@ h4,
   width: 100%;
 }
 
+.download-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .download-info {
   list-style: none;
   padding: 0;
@@ -517,12 +523,21 @@ h4,
 
 .download-action {
   align-self: stretch;
+  min-height: 220px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
   text-align: center;
+}
+
+.download-action .button {
+  margin-inline: auto;
+}
+
+.download-action .note {
+  margin: 0;
 }
 
 /* ===== 音楽室 ===== */
@@ -850,16 +865,37 @@ h4,
 }
 
 .centered-link-card {
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+}
+
+.centered-link-card h3,
+.centered-link-card p {
+  width: 100%;
 }
 
 .centered-link-card .button {
   margin-inline: auto;
 }
 
-.contact-card.three-column {
+.contact-card.contact-two-blocks {
   max-width: 980px;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1.35fr 0.65fr;
+}
+
+.contact-link-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+}
+
+.contact-link-list p {
+  margin: 0;
 }
 
 /* ===== 個別ページ共通 ===== */
@@ -1122,7 +1158,7 @@ h4,
   .staff-cards,
   .staff-cards.three,
   .contact-card.two-column,
-  .contact-card.three-column,
+  .contact-card.contact-two-blocks,
   .grid.two,
   .download-panel,
   .myaga-work,
@@ -1131,6 +1167,26 @@ h4,
   .pv-grid,
   .logs-summary-grid {
     grid-template-columns: 1fr;
+  }
+
+  .download-action {
+    min-height: auto;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .download-body {
+    justify-content: flex-start;
+  }
+
+  .contact-link-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .centered-link-card {
+    min-height: auto;
   }
 
   .title-logo-frame {
