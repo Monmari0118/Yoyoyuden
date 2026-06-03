@@ -1125,8 +1125,10 @@ h4,
   position: absolute;
   inset: 0;
   opacity: 0;
-  animation: tengokuIllustFade 15s infinite;
-  animation-fill-mode: both;
+  animation-name: tengokuIllustFade;
+  animation-duration: 15s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 .tengoku-illust-slide img {
@@ -1152,27 +1154,18 @@ h4,
 @keyframes tengokuIllustFade {
   0% {
     opacity: 1;
-    z-index: 2;
   }
 
-  28% {
+  29% {
     opacity: 1;
-    z-index: 2;
   }
 
-  34% {
+  32% {
     opacity: 0;
-    z-index: 1;
-  }
-
-  94% {
-    opacity: 0;
-    z-index: 1;
   }
 
   100% {
-    opacity: 1;
-    z-index: 2;
+    opacity: 0;
   }
 }
 
