@@ -1,8 +1,6 @@
 :root {
   --bg: #06110c;
-  --bg-soft: #10131b;
   --panel: #151925;
-  --panel-strong: #1a2030;
   --text: #eef3ff;
   --muted: #aab5ce;
   --line: #2d3447;
@@ -57,14 +55,6 @@ a {
 
 a:hover {
   opacity: 0.85;
-}
-
-code {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 0.1em 0.35em;
-  color: var(--accent);
 }
 
 .container {
@@ -195,12 +185,20 @@ h4,
   font-size: clamp(17px, 2.1vw, 21px);
 }
 
-.hero-buttons {
+.hero-buttons,
+.center-actions {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
+}
+
+.hero-buttons {
   margin-top: 32px;
+}
+
+.center-actions {
+  margin-top: 24px;
 }
 
 /* ===== ボタン ===== */
@@ -298,7 +296,6 @@ h4,
   margin-inline: auto;
 }
 
-.grid.two-column,
 .activity-grid.two-column,
 .contact-card.two-column {
   grid-template-columns: repeat(2, 1fr);
@@ -310,7 +307,7 @@ h4,
   background: rgba(21, 25, 37, 0.86);
   border: 1px solid rgba(96, 132, 100, 0.62);
   border-radius: var(--radius);
-  padding: 26px;
+  padding: 24px;
   box-shadow: var(--shadow);
 }
 
@@ -335,8 +332,6 @@ h4,
 .log p,
 .notice p,
 .music-card p,
-.album-box p,
-.secret-card p,
 .contact-card p,
 .link-card p,
 .work-body p,
@@ -349,7 +344,7 @@ h4,
 .creator-body p,
 .logs-summary-card p {
   font-size: 16px;
-  line-height: 1.95;
+  line-height: 1.85;
 }
 
 .muted,
@@ -367,7 +362,7 @@ h4,
   position: relative;
   width: min(900px, 100%);
   aspect-ratio: 4 / 3;
-  margin: 20px auto 12px;
+  margin: 18px auto 0;
   overflow: hidden;
   border: 1px solid rgba(96, 132, 100, 0.62);
   border-radius: 18px;
@@ -432,9 +427,6 @@ h4,
   height: 8px;
   border-radius: 999px;
   background: rgba(238, 243, 255, 0.35);
-  transition:
-    width 300ms ease,
-    background 300ms ease;
 }
 
 .slider-dots span.is-active {
@@ -497,11 +489,11 @@ h4,
 
 .download-panel {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 24px;
-  align-items: stretch;
-  margin: 0 auto;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 18px;
+  align-items: center;
   width: 100%;
+  padding: 26px 32px;
 }
 
 .download-body {
@@ -510,10 +502,18 @@ h4,
   justify-content: center;
 }
 
+.download-body h3 {
+  margin-bottom: 12px;
+}
+
+.download-body p {
+  margin: 0 0 16px;
+}
+
 .download-info {
   list-style: none;
   padding: 0;
-  margin: 18px 0 0;
+  margin: 4px 0 0;
 }
 
 .download-info li {
@@ -522,46 +522,39 @@ h4,
 }
 
 .download-action {
-  align-self: stretch;
-  min-height: 220px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   text-align: center;
 }
 
-.download-action .button {
-  margin-inline: auto;
-}
-
 .download-action .note {
-  margin: 0;
+  margin: 8px 0 0;
 }
 
 /* ===== 音楽室 ===== */
 
 .music-preview-wrap {
-  max-width: 980px;
+  max-width: 820px;
   margin-inline: auto;
 }
 
 .music-preview-card,
 .music-card,
-.album-box,
 .zip-card,
 .music-page-block {
   background: rgba(21, 25, 37, 0.88);
   border: 1px solid rgba(96, 132, 100, 0.62);
   border-radius: var(--radius);
-  padding: 22px;
+  padding: 20px;
   box-shadow: var(--shadow);
 }
 
 .music-preview-list {
   display: grid;
-  gap: 12px;
+  gap: 10px;
 }
 
 .music-card {
@@ -571,25 +564,25 @@ h4,
   align-items: center;
 }
 
-.music-number {
-  color: var(--accent);
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  margin: 0;
+.music-card-simple {
+  display: block;
+  padding: 14px 16px;
 }
 
-.music-card audio {
+.music-card audio,
+.music-card-simple audio {
   width: 100%;
+  display: block;
 }
 
 .card-head-row.plain {
   border-bottom: 1px solid rgba(96, 132, 100, 0.48);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
 }
 
 .compact-actions {
-  margin-top: 18px;
+  margin-top: 16px;
 }
 
 .download-only-grid {
@@ -609,8 +602,6 @@ h4,
 }
 
 .secret-card {
-  position: relative;
-  overflow: hidden;
   background:
     radial-gradient(circle at top left, rgba(142, 240, 212, 0.12), transparent 48%),
     rgba(21, 25, 37, 0.88);
@@ -689,20 +680,6 @@ h4,
   max-height: 420px;
   overflow-y: auto;
   padding-right: 6px;
-}
-
-.scroll-area::-webkit-scrollbar {
-  width: 8px;
-}
-
-.scroll-area::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 999px;
-}
-
-.scroll-area::-webkit-scrollbar-thumb {
-  background: rgba(142, 240, 212, 0.35);
-  border-radius: 999px;
 }
 
 .mini-log {
@@ -841,13 +818,13 @@ h4,
 .link-grid,
 .contact-card {
   display: grid;
-  gap: 18px;
-  max-width: 860px;
+  gap: 16px;
   margin-inline: auto;
 }
 
 .link-grid {
   grid-template-columns: repeat(2, 1fr);
+  max-width: 900px;
 }
 
 .link-card,
@@ -861,41 +838,33 @@ h4,
 
 .link-card h3,
 .contact-card h3 {
-  margin-top: 0;
+  margin: 0;
 }
 
 .centered-link-card {
-  min-height: 190px;
+  min-height: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 14px;
   text-align: center;
 }
 
-.centered-link-card h3,
-.centered-link-card p {
-  width: 100%;
-}
-
-.centered-link-card .button {
-  margin-inline: auto;
-}
-
-.contact-card.contact-two-blocks {
+.contact-card.contact-three-cards {
   max-width: 980px;
-  grid-template-columns: 1.35fr 0.65fr;
+  grid-template-columns: repeat(3, 1fr);
 }
 
-.contact-link-list {
+.contact-card.contact-three-cards > div {
+  min-height: 150px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.contact-link-list p {
-  margin: 0;
+.contact-card p {
+  margin: 18px 0 0;
 }
 
 /* ===== 個別ページ共通 ===== */
@@ -1107,16 +1076,6 @@ h4,
   }
 }
 
-/* ===== 戻るボタンなど ===== */
-
-.center-actions {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 28px;
-}
-
 /* ===== 注意事項・フッター ===== */
 
 .notice-section {
@@ -1158,7 +1117,7 @@ h4,
   .staff-cards,
   .staff-cards.three,
   .contact-card.two-column,
-  .contact-card.contact-two-blocks,
+  .contact-card.contact-three-cards,
   .grid.two,
   .download-panel,
   .myaga-work,
@@ -1169,20 +1128,17 @@ h4,
     grid-template-columns: 1fr;
   }
 
+  .download-panel {
+    padding: 22px;
+  }
+
   .download-action {
-    min-height: auto;
     align-items: flex-start;
     text-align: left;
   }
 
-  .download-body {
-    justify-content: flex-start;
-  }
-
-  .contact-link-list {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+  .contact-card.contact-three-cards > div {
+    min-height: auto;
   }
 
   .centered-link-card {
@@ -1222,16 +1178,8 @@ h4,
     padding: 52px 0 50px;
   }
 
-  .hero-inner {
-    text-align: center;
-  }
-
   .quick-info {
     grid-template-columns: 1fr;
-  }
-
-  .section-head {
-    text-align: center;
   }
 
   .staff-list div {
@@ -1273,7 +1221,6 @@ h4,
   .download-panel,
   .log,
   .music-card,
-  .album-box,
   .secret-card,
   .contact-card > div,
   .link-card,
