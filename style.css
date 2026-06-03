@@ -1267,11 +1267,11 @@ h4,
 }
 
 .tengoku-card-thumb {
-  max-width: 420px;
+  max-width: 360px;
   width: 100%;
   aspect-ratio: 1 / 1;
   min-height: 0;
-  padding: 14px;
+  padding: 12px;
   border-style: solid;
   background:
     radial-gradient(circle at top left, rgba(255, 255, 255, 0.03), transparent 45%),
@@ -1282,7 +1282,7 @@ h4,
   width: 100%;
   height: 100%;
   max-height: none;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
   margin: 0 auto;
   border-radius: 10px;
@@ -1290,22 +1290,22 @@ h4,
 }
 
 .tengoku-gallery-card {
-  max-width: 900px;
+  width: min(680px, 100%);
   margin: 0 auto;
   background: rgba(21, 25, 37, 0.88);
   border: 1px solid rgba(96, 132, 100, 0.62);
   border-radius: 18px;
-  padding: 24px;
+  padding: 18px;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.32);
 }
 
-.tengoku-gallery-slider {
+.tengoku-illustration-slider {
   position: relative;
-  width: min(100%, 820px);
-  aspect-ratio: 4 / 5;
-  margin: 0 auto;
+  width: 100%;
+  height: min(68vh, 620px);
+  min-height: 420px;
   overflow: hidden;
-  border-radius: 18px;
+  border-radius: 16px;
   border: 1px solid rgba(96, 132, 100, 0.62);
   background:
     radial-gradient(circle at top left, rgba(142, 240, 212, 0.08), transparent 45%),
@@ -1313,14 +1313,15 @@ h4,
     rgba(0, 0, 0, 0.32);
 }
 
-.tengoku-gallery-slide {
+.tengoku-illustration-slide {
   position: absolute;
   inset: 0;
   opacity: 0;
-  animation: tengokuGalleryFade 12s infinite;
+  visibility: hidden;
+  animation: tengokuIllustrationFade 15s infinite;
 }
 
-.tengoku-gallery-slide img {
+.tengoku-illustration-slide img {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -1328,98 +1329,46 @@ h4,
   background: rgba(0, 0, 0, 0.22);
 }
 
-.tengoku-gallery-slide.slide-1 {
+.tengoku-illustration-slide.illustration-1 {
   animation-delay: 0s;
 }
 
-.tengoku-gallery-slide.slide-2 {
-  animation-delay: 4s;
+.tengoku-illustration-slide.illustration-2 {
+  animation-delay: 5s;
 }
 
-.tengoku-gallery-slide.slide-3 {
-  animation-delay: 8s;
+.tengoku-illustration-slide.illustration-3 {
+  animation-delay: 10s;
 }
 
-@keyframes tengokuGalleryFade {
+@keyframes tengokuIllustrationFade {
   0% {
     opacity: 0;
+    visibility: hidden;
   }
 
-  8% {
+  6% {
     opacity: 1;
+    visibility: visible;
   }
 
   30% {
     opacity: 1;
+    visibility: visible;
   }
 
-  38% {
+  36% {
     opacity: 0;
+    visibility: hidden;
   }
 
   100% {
     opacity: 0;
+    visibility: hidden;
   }
 }
 
-.tengoku-gallery-dots {
-  position: absolute;
-  left: 50%;
-  bottom: 14px;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  z-index: 3;
-}
-
-.tengoku-gallery-dots span {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: rgba(238, 243, 255, 0.45);
-  animation: tengokuDotPulse 12s infinite;
-}
-
-.tengoku-gallery-dots span:nth-child(1) {
-  animation-delay: 0s;
-}
-
-.tengoku-gallery-dots span:nth-child(2) {
-  animation-delay: 4s;
-}
-
-.tengoku-gallery-dots span:nth-child(3) {
-  animation-delay: 8s;
-}
-
-@keyframes tengokuDotPulse {
-  0% {
-    width: 8px;
-    background: rgba(238, 243, 255, 0.35);
-  }
-
-  8% {
-    width: 24px;
-    background: #8ef0d4;
-  }
-
-  30% {
-    width: 24px;
-    background: #8ef0d4;
-  }
-
-  38% {
-    width: 8px;
-    background: rgba(238, 243, 255, 0.35);
-  }
-
-  100% {
-    width: 8px;
-    background: rgba(238, 243, 255, 0.35);
-  }
-}
-
-/* ===== スマホ調整 ===== */
+/* ===== てんごくページ スマホ調整 ===== */
 
 @media (max-width: 980px) {
   .tengoku-work {
@@ -1427,22 +1376,32 @@ h4,
   }
 
   .tengoku-card-thumb {
-    max-width: 360px;
+    max-width: 320px;
+  }
+
+  .tengoku-gallery-card {
+    width: min(560px, 100%);
+  }
+
+  .tengoku-illustration-slider {
+    height: min(64vh, 560px);
+    min-height: 360px;
   }
 }
 
 @media (max-width: 560px) {
-  .tengoku-gallery-card {
-    padding: 18px;
-  }
-
   .tengoku-card-thumb {
-    max-width: 300px;
+    max-width: 280px;
     padding: 10px;
   }
 
-  .tengoku-gallery-slider {
-    width: 100%;
-    aspect-ratio: 4 / 5;
+  .tengoku-gallery-card {
+    padding: 14px;
   }
+
+  .tengoku-illustration-slider {
+    height: min(62vh, 480px);
+    min-height: 320px;
+  }
+}
 }
