@@ -1165,3 +1165,68 @@ h4,
     max-height: 360px;
   }
 }
+/* ===== みゃが制作ゲーム スクリーンショット ===== */
+
+.myaga-screenshot-slider {
+  position: relative;
+  width: min(900px, 100%);
+  aspect-ratio: 4 / 3;
+  margin: 28px auto 0;
+  overflow: hidden;
+  border: 1px solid rgba(96, 132, 100, 0.62);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top left, rgba(142, 240, 212, 0.08), transparent 45%),
+    radial-gradient(circle at bottom right, rgba(112, 198, 112, 0.10), transparent 48%),
+    rgba(0, 0, 0, 0.38);
+  box-shadow: var(--shadow);
+}
+
+.myaga-screenshot-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: myagaScreenshotFade 12s infinite;
+}
+
+.myaga-screenshot-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.myaga-screenshot-slide.slide-1 {
+  animation-delay: 0s;
+}
+
+.myaga-screenshot-slide.slide-2 {
+  animation-delay: 4s;
+}
+
+.myaga-screenshot-slide.slide-3 {
+  animation-delay: 8s;
+}
+
+@keyframes myagaScreenshotFade {
+  0% {
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  38% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
