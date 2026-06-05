@@ -1,7 +1,42 @@
 document.addEventListener("DOMContentLoaded", () => {
+  initSmoothScroll();
   initScreenshotSlider();
   renderActivityRecords();
 });
+
+function initSmoothScroll() {
+  const samePageLinks = document.querySelectorAll('a[href^="#"]');
+
+  samePageLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const hash = link.getAttribute("href");
+
+      if (!hash || hash === "#") {
+        return;
+      }
+
+      const target = document.querySelector(hash);
+
+      if (!target) {
+        return;
+      }
+
+      event.preventDefault();
+
+      const header = document.querySelector(".site-header");
+      const headerHeight = header ? header.offsetHeight : 0;
+      const extraSpace = 12;
+      const targetTop = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - extraSpace;
+
+      window.scrollTo({
+        top: targetTop,
+        behavior: "smooth"
+      });
+
+      window.history.pushState(null, "", hash);
+    });
+  });
+}
 
 function initScreenshotSlider() {
   const slider = document.querySelector(".screenshot-slider");
@@ -58,28 +93,10 @@ function renderActivityRecords() {
   });
 }
 
-function getLimitedRecords(target, records) {
-  const limit = target.dataset.recordLimit;
-
-  if (!limit || limit === "all") {
-    return records;
-  }
-
-  const count = Number.parseInt(limit, 10);
-
-  if (Number.isNaN(count)) {
-    return records;
-  }
-
-  return records.slice(0, count);
-}
-
 function renderTweets(target, tweets) {
-  const limitedTweets = getLimitedRecords(target, tweets);
-
   target.innerHTML = "";
 
-  limitedTweets.forEach((item) => {
+  tweets.forEach((item) => {
     const li = document.createElement("li");
 
     const time = document.createElement("time");
@@ -96,11 +113,9 @@ function renderTweets(target, tweets) {
 }
 
 function renderUpdates(target, updates) {
-  const limitedUpdates = getLimitedRecords(target, updates);
-
   target.innerHTML = "";
 
-  limitedUpdates.forEach((item) => {
+  updates.forEach((item) => {
     if (item.title) {
       const article = document.createElement("article");
       article.className = "mini-log";
