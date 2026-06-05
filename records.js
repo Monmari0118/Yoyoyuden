@@ -15,7 +15,7 @@ window.yoyoyudenRecords = {
   updates: [
     {
       date: "2026-06-07",
-      label: "2026.06.03",
+      label: "2026.06.07",
       title: "",
       text: "「東方葉々癒伝」の紹介サイトを公開しました。今後は制作進捗などを追加していきます。"
     },
