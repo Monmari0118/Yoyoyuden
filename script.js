@@ -46,20 +46,40 @@ function renderActivityRecords() {
     return;
   }
 
-  renderTweets(window.yoyoyudenRecords.tweets || []);
-  renderUpdates(window.yoyoyudenRecords.updates || []);
+  const tweetTargets = document.querySelectorAll('[data-record-type="tweets"]');
+  const updateTargets = document.querySelectorAll('[data-record-type="updates"]');
+
+  tweetTargets.forEach((target) => {
+    renderTweets(target, window.yoyoyudenRecords.tweets || []);
+  });
+
+  updateTargets.forEach((target) => {
+    renderUpdates(target, window.yoyoyudenRecords.updates || []);
+  });
 }
 
-function renderTweets(tweets) {
-  const tweetList = document.getElementById("tweetList");
+function getLimitedRecords(target, records) {
+  const limit = target.dataset.recordLimit;
 
-  if (!tweetList) {
-    return;
+  if (!limit || limit === "all") {
+    return records;
   }
 
-  tweetList.innerHTML = "";
+  const count = Number.parseInt(limit, 10);
 
-  tweets.forEach((item) => {
+  if (Number.isNaN(count)) {
+    return records;
+  }
+
+  return records.slice(0, count);
+}
+
+function renderTweets(target, tweets) {
+  const limitedTweets = getLimitedRecords(target, tweets);
+
+  target.innerHTML = "";
+
+  limitedTweets.forEach((item) => {
     const li = document.createElement("li");
 
     const time = document.createElement("time");
@@ -71,20 +91,16 @@ function renderTweets(tweets) {
 
     li.appendChild(time);
     li.appendChild(p);
-    tweetList.appendChild(li);
+    target.appendChild(li);
   });
 }
 
-function renderUpdates(updates) {
-  const updateList = document.getElementById("updateList");
+function renderUpdates(target, updates) {
+  const limitedUpdates = getLimitedRecords(target, updates);
 
-  if (!updateList) {
-    return;
-  }
+  target.innerHTML = "";
 
-  updateList.innerHTML = "";
-
-  updates.forEach((item) => {
+  limitedUpdates.forEach((item) => {
     if (item.title) {
       const article = document.createElement("article");
       article.className = "mini-log";
@@ -102,7 +118,8 @@ function renderUpdates(updates) {
       article.appendChild(time);
       article.appendChild(h4);
       article.appendChild(p);
-      updateList.appendChild(article);
+      target.appendChild(article);
+
       return;
     }
 
@@ -121,6 +138,6 @@ function renderUpdates(updates) {
     li.appendChild(time);
     li.appendChild(span);
     ul.appendChild(li);
-    updateList.appendChild(ul);
+    target.appendChild(ul);
   });
 }

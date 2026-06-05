@@ -282,47 +282,25 @@
         </div>
 
         <div class="activity-grid two-column">
-          <section class="activity-card scroll-card">
+          <section class="activity-card">
             <div class="card-head-row">
               <h3>ひとこと</h3>
+              <a class="small-link" href="activity.html#tweets">すべて見る</a>
             </div>
 
-            <div class="scroll-area">
-              <ul class="tweet-list">
-                <li>
-                  <time datetime="2026-06-05">2026.06.05</time>
-                  <p>専用サイト公開に伴って、今まで進捗を載せていたFantiaを閉鎖準備中･･･（モ）</p>
-                </li>
-
-                <li>
-                  <time datetime="2026-06-02">2026.06.02</time>
-                  <p>ゲーム作りは難しい（モ）</p>
-                </li>
+            <div class="activity-preview-list">
+              <ul class="tweet-list" data-record-type="tweets" data-record-limit="5">
               </ul>
             </div>
           </section>
 
-          <section class="activity-card scroll-card">
+          <section class="activity-card">
             <div class="card-head-row">
               <h3>更新履歴</h3>
+              <a class="small-link" href="activity.html#updates">すべて見る</a>
             </div>
 
-            <div class="scroll-area">
-              <article class="mini-log">
-                <time datetime="2026-06-07">2026.06.03</time>
-                <h4>公式サイトを公開しました</h4>
-                <p>
-                  「東方葉々癒伝」の紹介サイトを公開しました。
-                  今後は制作進捗などを追加していきます。
-                </p>
-              </article>
-
-              <ul class="update-list">
-                <li>
-                  <time datetime="2026-04-02">2026.04.02</time>
-                  <span>制作環境を整理中</span>
-                </li>
-              </ul>
+            <div class="activity-preview-list" data-record-type="updates" data-record-limit="5">
             </div>
           </section>
         </div>
@@ -469,6 +447,7 @@
     </div>
   </footer>
 
+  <script src="records.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

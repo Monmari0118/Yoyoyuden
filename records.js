@@ -1,4 +1,4 @@
-const yoyoyudenRecords = {
+window.yoyoyudenRecords = {
   tweets: [
     {
       date: "2026-06-05",
@@ -23,7 +23,7 @@ const yoyoyudenRecords = {
       date: "2026-04-02",
       label: "2026.04.02",
       title: "",
-      text: "制作環境を整理中です"
+      text: "制作環境を整理中"
     }
   ]
 };
