@@ -552,6 +552,21 @@ h4,
   box-shadow: var(--shadow);
 }
 
+.music-intro {
+  margin: 0 0 16px;
+  color: var(--text);
+  font-family:
+    "Zen Kaku Gothic New",
+    system-ui,
+    -apple-system,
+    "Noto Sans JP",
+    "Yu Gothic",
+    sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.9;
+}
+
 .music-preview-list {
   display: grid;
   gap: 10px;
@@ -737,6 +752,12 @@ h4,
 
 .tweet-list p {
   margin: 0;
+}
+
+.tweet-list p,
+.mini-log p,
+.update-list span {
+  white-space: pre-line;
 }
 
 .update-list span {
