@@ -1,5 +1,11 @@
 window.yoyoyudenRecords = {
   tweets: [
+  {
+      date: "2026-06-07",
+      label: "2026.06.07",
+      text: "ｴﾚｸﾄｰﾘｯｸwwwﾐﾝﾄｫwwwﾐﾝﾄｫwww
+             私も多分呟きます。よろしくお願いします。（み）"
+    },
       {
       date: "2026-06-07",
       label: "2026.06.07",
