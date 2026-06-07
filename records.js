@@ -20,6 +20,11 @@ window.yoyoyudenRecords = {
       date: "2026-06-02",
       label: "2026.06.02",
       text: "ゲーム作りは難しい（モ）"
+    },
+    {
+      date: "2026-04-02",
+      label: "2026.04.02",
+      text: "Testo"
     }
   ],
 
