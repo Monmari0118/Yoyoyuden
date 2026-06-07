@@ -673,13 +673,17 @@ h4,
 .scroll-card {
   display: flex;
   flex-direction: column;
-  min-height: 320px;
+  height: 320px;
+  min-height: 0;
 }
 
 .scroll-area {
-  max-height: 420px;
-  overflow-y: auto;
-  padding-right: 6px;
+  flex: 1;
+  min-height: 0;
+  max-height: none;
+  overflow-y: scroll;
+  padding-right: 8px;
+  scrollbar-gutter: stable;
 }
 
 .mini-log {
@@ -1400,8 +1404,12 @@ h4,
     padding: 52px 0;
   }
 
+  .scroll-card {
+    height: 300px;
+  }
+
   .scroll-area {
-    max-height: 360px;
+    max-height: none;
   }
 
   .card-head-row {
