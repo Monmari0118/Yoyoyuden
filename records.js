@@ -1,5 +1,10 @@
 window.yoyoyudenRecords = {
   tweets: [
+                       {
+      date: "2026-06-30",
+      label: "2026.06.30",
+      text: "東方葉々癒伝ver0.42は明日リリースですよ！"
+    },
                       {
       date: "2026-06-21",
       label: "2026.06.21",
