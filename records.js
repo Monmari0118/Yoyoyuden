@@ -66,6 +66,12 @@ window.yoyoyudenRecords = {
   ],
 
   updates: [
+          {
+      date: "2026-07-01",
+      label: "2026.07.01",
+      title: "",
+      text: "東方葉々癒伝ver0.42（RPG）の配布を開始しました。"
+    },
       {
       date: "2026-06-07",
       label: "2026.06.07",
