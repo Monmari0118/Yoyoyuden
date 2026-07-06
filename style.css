@@ -1805,3 +1805,160 @@ h4,
     animation-duration: 18s;
   }
 }
+
+/* ===== 2026-07-06 再調整：上部メニュー・速報ロールバー・制作日記枠 ===== */
+.site-header .container {
+  width: min(1380px, calc(100% - 40px));
+}
+
+.header-inner {
+  min-height: 88px;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.site-title {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  min-width: max-content;
+  white-space: nowrap !important;
+  font-size: clamp(24px, 2vw, 30px);
+  line-height: 1.25;
+  letter-spacing: 0.06em;
+}
+
+.site-nav {
+  flex: 1 1 auto;
+  gap: 14px 18px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.site-nav a {
+  font-size: clamp(17px, 1.25vw, 20px);
+  font-weight: 900;
+  padding: 9px 13px;
+}
+
+.info-ticker {
+  border-top: 1px solid rgba(142, 240, 212, 0.16);
+  border-bottom: 1px solid rgba(142, 240, 212, 0.38);
+}
+
+.ticker-viewport {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+}
+
+.ticker-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 44vw;
+  width: max-content;
+  min-width: auto;
+  padding-left: 100vw;
+  animation: tickerScroll 17s linear infinite;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-width: 260px;
+  min-height: 44px;
+  padding: 8px 28px;
+  border: 1px solid rgba(142, 240, 212, 0.42);
+  border-radius: 999px;
+  background: rgba(9, 28, 18, 0.92);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+  font-size: clamp(18px, 1.3vw, 22px);
+  font-weight: 900;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.ticker-item + .ticker-item {
+  margin-left: 0;
+}
+
+@keyframes tickerScroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-100% - 100vw));
+  }
+}
+
+.activity-grid.three-column {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.diary-link-card {
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-diary-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.activity-diary-body p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.9;
+  font-weight: 700;
+}
+
+@media (max-width: 1180px) {
+  .header-inner {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 0;
+  }
+
+  .site-nav {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 980px) {
+  .activity-grid.three-column {
+    grid-template-columns: 1fr;
+  }
+
+  .site-header .container {
+    width: min(100%, calc(100% - 28px));
+  }
+
+  .site-title {
+    font-size: 22px;
+  }
+
+  .site-nav a {
+    font-size: 15px;
+    padding: 7px 10px;
+  }
+
+  .ticker-track {
+    gap: 60vw;
+    animation-duration: 15s;
+  }
+
+  .ticker-item {
+    min-width: 220px;
+    font-size: 17px;
+    padding: 8px 22px;
+  }
+}
+
