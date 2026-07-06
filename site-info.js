@@ -1,10 +1,33 @@
 window.yoyoyudenSiteInfo = {
   ticker: [
     {
-      label: "",
-      text: "メンテナンス中"
+      label: "メンテナンス中",
+      text: ""
+    },
+    {
+      label: "メンテナンス中",
+      text: ""
+    },
+    {
+      label: "メンテナンス中",
+      text: ""
     }
   ],
 
-  notices: []
+  notices: [
+    {
+      level: "primary",
+      label: "メンテナンス中",
+      title: "メンテナンス中",
+      text: "メンテナンス中",
+      href: ""
+    },
+    {
+      level: "normal",
+      label: "メンテナンス中",
+      title: "メンテナンス中",
+      text: "メンテナンス中",
+      href: "devlog.html"
+    }
+  ]
 };

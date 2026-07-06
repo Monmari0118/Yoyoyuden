@@ -171,19 +171,19 @@ function renderSiteInformation() {
   if (tickerTrack && Array.isArray(data.ticker) && data.ticker.length > 0) {
     tickerTrack.innerHTML = "";
 
-    data.ticker.forEach((item) => {
+    const tickerItems = [...data.ticker, ...data.ticker];
+
+    tickerItems.forEach((item) => {
       const span = document.createElement("span");
       span.className = "ticker-item";
 
-      if (item.label) {
-        const label = document.createElement("strong");
-        label.textContent = item.label || "";
-        span.appendChild(label);
-      }
+      const label = document.createElement("strong");
+      label.textContent = item.label || "";
 
       const text = document.createElement("span");
       text.textContent = item.text || "";
 
+      span.appendChild(label);
       span.appendChild(text);
       tickerTrack.appendChild(span);
     });
@@ -220,7 +220,7 @@ function renderSiteInformation() {
         const link = document.createElement("a");
         link.className = "text-link";
         link.href = item.href;
-        link.textContent = "制作日記を見る";
+        link.textContent = "メンテナンス中";
         article.appendChild(link);
       }
 
