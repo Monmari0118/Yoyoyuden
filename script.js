@@ -175,13 +175,15 @@ function renderSiteInformation() {
       const span = document.createElement("span");
       span.className = "ticker-item";
 
-      const label = document.createElement("strong");
-      label.textContent = item.label || "";
+      if (item.label) {
+        const label = document.createElement("strong");
+        label.textContent = item.label || "";
+        span.appendChild(label);
+      }
 
       const text = document.createElement("span");
       text.textContent = item.text || "";
 
-      span.appendChild(label);
       span.appendChild(text);
       tickerTrack.appendChild(span);
     });
