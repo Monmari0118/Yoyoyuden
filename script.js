@@ -1,10 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
+  initTanabataSeason();
   initSmoothScroll();
   initScreenshotSlider();
   renderActivityRecords();
-  renderDevlogPreview();
-  renderDevlogPage();
 });
+
+function initTanabataSeason() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1;
+  const day = now.getDate();
+
+  const isTanabataPeriod = year === 2026 && month === 7 && (day === 7 || day === 8);
+
+  if (isTanabataPeriod) {
+    document.body.classList.add("season-tanabata");
+  }
+}
 
 function initSmoothScroll() {
   const samePageLinks = document.querySelectorAll('a[href^="#"]');
