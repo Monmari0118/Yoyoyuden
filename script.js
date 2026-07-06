@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   initSmoothScroll();
   initScreenshotSlider();
-  renderSiteInformation();
   renderActivityRecords();
   renderDevlogPreview();
   renderDevlogPage();
@@ -171,36 +170,22 @@ function renderSiteInformation() {
   if (tickerTrack && Array.isArray(data.ticker) && data.ticker.length > 0) {
     tickerTrack.innerHTML = "";
 
-    const makeTickerGroup = () => {
-      const group = document.createElement("div");
-      group.className = "ticker-group";
+    const tickerItems = [...data.ticker, ...data.ticker];
 
-      for (let repeatIndex = 0; repeatIndex < 8; repeatIndex += 1) {
-        data.ticker.forEach((item) => {
-          const span = document.createElement("span");
-          span.className = "ticker-item";
+    tickerItems.forEach((item) => {
+      const span = document.createElement("span");
+      span.className = "ticker-item";
 
-          const label = document.createElement("strong");
-          label.textContent = item.label || "";
+      const label = document.createElement("strong");
+      label.textContent = item.label || "";
 
-          const text = document.createElement("span");
-          text.textContent = item.text || "";
+      const text = document.createElement("span");
+      text.textContent = item.text || "";
 
-          span.appendChild(label);
-
-          if (item.text) {
-            span.appendChild(text);
-          }
-
-          group.appendChild(span);
-        });
-      }
-
-      return group;
-    };
-
-    tickerTrack.appendChild(makeTickerGroup());
-    tickerTrack.appendChild(makeTickerGroup());
+      span.appendChild(label);
+      span.appendChild(text);
+      tickerTrack.appendChild(span);
+    });
   }
 
   const noticeList = document.querySelector("[data-notice-list]");
