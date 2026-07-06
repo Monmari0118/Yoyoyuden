@@ -234,7 +234,7 @@ function renderSiteInformation() {
         const link = document.createElement("a");
         link.className = "text-link";
         link.href = item.href;
-        link.textContent = "メンテナンス中";
+        link.textContent = "準備中";
         article.appendChild(link);
       }
 

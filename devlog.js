@@ -1,27 +1,27 @@
 window.yoyoyudenDevlog = [
   {
-    label: "メンテナンス中",
-    category: "メンテナンス中",
-    title: "メンテナンス中",
-    text: "メンテナンス中",
+    label: "準備中",
+    category: "準備中",
+    title: "準備中",
+    text: "準備中",
     images: [
       {
         src: "assets/devlog/test01.png",
-        alt: "メンテナンス中"
+        alt: "準備中"
       }
     ],
     qa: [
       {
-        question: "メンテナンス中",
-        answer: "メンテナンス中"
+        question: "準備中",
+        answer: "準備中"
       }
     ]
   },
   {
-    label: "メンテナンス中",
-    category: "メンテナンス中",
-    title: "メンテナンス中",
-    text: "メンテナンス中",
+    label: "準備中",
+    category: "準備中",
+    title: "準備中",
+    text: "準備中",
     images: [],
     qa: []
   }
