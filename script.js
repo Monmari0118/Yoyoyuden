@@ -171,9 +171,7 @@ function renderSiteInformation() {
   if (tickerTrack && Array.isArray(data.ticker) && data.ticker.length > 0) {
     tickerTrack.innerHTML = "";
 
-    const tickerItems = [...data.ticker, ...data.ticker];
-
-    tickerItems.forEach((item) => {
+    data.ticker.forEach((item) => {
       const span = document.createElement("span");
       span.className = "ticker-item";
 
@@ -220,7 +218,7 @@ function renderSiteInformation() {
         const link = document.createElement("a");
         link.className = "text-link";
         link.href = item.href;
-        link.textContent = "テスト中　テスト中";
+        link.textContent = "テスト中";
         article.appendChild(link);
       }
 
