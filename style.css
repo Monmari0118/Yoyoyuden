@@ -1855,3 +1855,72 @@ body::before {
     width: 100%;
   }
 }
+
+/* ===== v10 header and activity refinements ===== */
+
+.site-header {
+  background: rgba(5, 27, 17, 0.90);
+  border-bottom: 1px solid rgba(142, 240, 212, 0.24);
+}
+
+.header-inner {
+  min-height: 122px;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-items: center;
+  padding-block: 16px;
+}
+
+.site-title {
+  display: none !important;
+}
+
+.site-nav {
+  grid-column: 1 / -1;
+  width: min(1180px, 100%);
+  min-height: 90px;
+  display: grid;
+  grid-template-columns: repeat(5, max-content);
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  gap: 22px 72px;
+  margin-inline: auto;
+}
+
+.site-nav a {
+  font-size: clamp(21px, 1.45vw, 27px);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+}
+
+.update-list li:not(:last-child) {
+  border-bottom: 1px solid rgba(96, 132, 100, 0.48);
+}
+
+@media (max-width: 1180px) {
+  .header-inner {
+    min-height: auto;
+    padding-block: 18px;
+  }
+
+  .site-nav {
+    width: 100%;
+    min-height: auto;
+    grid-template-columns: repeat(3, max-content);
+    gap: 16px 34px;
+  }
+}
+
+@media (max-width: 720px) {
+  .site-nav {
+    grid-template-columns: repeat(2, max-content);
+    gap: 12px 22px;
+  }
+
+  .site-nav a {
+    font-size: 16px;
+  }
+}

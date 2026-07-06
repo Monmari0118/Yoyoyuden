@@ -117,8 +117,22 @@ function renderTweets(target, tweets) {
 function renderUpdates(target, updates) {
   target.innerHTML = "";
 
+  let updateList = null;
+
+  const ensureUpdateList = () => {
+    if (!updateList) {
+      updateList = document.createElement("ul");
+      updateList.className = "update-list";
+      target.appendChild(updateList);
+    }
+
+    return updateList;
+  };
+
   updates.forEach((item) => {
     if (item.title) {
+      updateList = null;
+
       const article = document.createElement("article");
       article.className = "mini-log";
 
@@ -140,9 +154,7 @@ function renderUpdates(target, updates) {
       return;
     }
 
-    const ul = document.createElement("ul");
-    ul.className = "update-list";
-
+    const ul = ensureUpdateList();
     const li = document.createElement("li");
 
     const time = document.createElement("time");
@@ -155,7 +167,6 @@ function renderUpdates(target, updates) {
     li.appendChild(time);
     li.appendChild(span);
     ul.appendChild(li);
-    target.appendChild(ul);
   });
 }
 function renderSiteInformation() {

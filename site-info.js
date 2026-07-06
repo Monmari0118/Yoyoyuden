@@ -1,4 +1,0 @@
-window.yoyoyudenSiteInfo = {
-  ticker: [],
-  notices: []
-};
