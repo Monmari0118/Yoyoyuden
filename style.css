@@ -2420,3 +2420,90 @@ body.site-glow .download-action .button.disabled::after {
     animation: none;
   }
 }
+
+/* ===== v15 修正：ダウンロード枠内に出る白い走査光を停止 ===== */
+body.site-glow .download-panel::before {
+  content: none;
+  display: none;
+  animation: none;
+}
+
+/* ===== v16 ヘッダー全体のバランス調整 ===== */
+body.site-glow .site-header {
+  min-height: 84px;
+}
+
+body.site-glow .header-inner {
+  width: min(1500px, calc(100% - 56px));
+  min-height: 84px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.site-glow .site-nav {
+  width: 100%;
+  min-height: 84px;
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  align-items: center;
+  justify-items: center;
+  align-content: center;
+  column-gap: 10px;
+  row-gap: 0;
+  margin: 0;
+}
+
+body.site-glow .site-nav a {
+  width: 100%;
+  min-height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  line-height: 1.15;
+  text-align: center;
+}
+
+@media (max-width: 1320px) {
+  body.site-glow .site-header,
+  body.site-glow .header-inner {
+    min-height: 112px;
+  }
+
+  body.site-glow .header-inner {
+    width: min(1080px, calc(100% - 40px));
+    padding-block: 10px;
+  }
+
+  body.site-glow .site-nav {
+    min-height: 92px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    row-gap: 8px;
+  }
+
+  body.site-glow .site-nav a {
+    min-height: 42px;
+  }
+}
+
+@media (max-width: 900px) {
+  body.site-glow .site-nav {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  body.site-glow .header-inner {
+    width: min(100% - 24px, 520px);
+  }
+
+  body.site-glow .site-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  body.site-glow .site-nav a {
+    font-size: 15px;
+  }
+}
