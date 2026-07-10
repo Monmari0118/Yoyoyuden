@@ -2684,3 +2684,75 @@ body.site-glow .button {
   letter-spacing: 0.02em;
 }
 
+
+/* ===== v19 全ページ背景の抑制・黒縁取り ===== */
+
+/* 背景画像と発光色を一段奥へ下げ、全ページで文字を優先する。 */
+body.site-glow {
+  background:
+    linear-gradient(rgba(6, 22, 30, 0.64), rgba(5, 25, 29, 0.84)),
+    radial-gradient(ellipse at 16% 10%, rgba(88, 255, 226, 0.16), transparent 32rem),
+    radial-gradient(ellipse at 84% 12%, rgba(137, 126, 255, 0.13), transparent 34rem),
+    radial-gradient(ellipse at 50% 50%, rgba(47, 185, 255, 0.10), transparent 46rem),
+    url("assets/site-bg.png") center top / cover fixed,
+    url("assets/bg-leaves.png") center top / cover fixed,
+    var(--bg);
+}
+
+/* 背景上の装飾粒子も少し控えめにする。 */
+body.site-glow::before {
+  opacity: 0.68;
+}
+
+body.site-glow::after {
+  opacity: 0.30;
+}
+
+/* 全ページの明るい文字へ、実効約2pxの黒縁を追加する。 */
+body.site-glow :where(
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  li,
+  dt,
+  dd,
+  time,
+  strong,
+  .site-nav a,
+  .section-kicker,
+  .label,
+  .page-title,
+  .small-link,
+  .text-link,
+  .placeholder-text
+) {
+  -webkit-text-stroke: 0.45px rgba(0, 0, 0, 0.96);
+  paint-order: stroke fill;
+  text-shadow:
+    -1px -1px 0 rgba(0, 0, 0, 0.96),
+     1px -1px 0 rgba(0, 0, 0, 0.96),
+    -1px  1px 0 rgba(0, 0, 0, 0.96),
+     1px  1px 0 rgba(0, 0, 0, 0.96),
+     0 0 2px rgba(0, 0, 0, 0.98),
+     0 2px 3px rgba(0, 0, 0, 0.88) !important;
+}
+
+/* 明るいボタン上の黒文字は黒縁を重ねず、可読性を維持する。 */
+body.site-glow .button.primary {
+  -webkit-text-stroke: 0;
+  text-shadow: none !important;
+}
+
+/* 暗色ボタン上の文字には黒縁を残す。 */
+body.site-glow .button:not(.primary) {
+  -webkit-text-stroke: 0.35px rgba(0, 0, 0, 0.94);
+  paint-order: stroke fill;
+  text-shadow:
+    -1px -1px 0 rgba(0, 0, 0, 0.90),
+     1px -1px 0 rgba(0, 0, 0, 0.90),
+    -1px  1px 0 rgba(0, 0, 0, 0.90),
+     1px  1px 0 rgba(0, 0, 0, 0.90),
+     0 0 2px rgba(0, 0, 0, 0.96) !important;
+}
