@@ -2626,3 +2626,61 @@ body.site-glow .site-nav a:nth-child(9) { grid-column: 8 / span 2; grid-row: 2; 
     grid-column: 1 / -1 !important;
   }
 }
+
+/* ===== v18 背景上での文字視認性強化 ===== */
+
+/* サイト全体の基本ウェイトを一段上げる。 */
+body.site-glow {
+  font-weight: 500;
+}
+
+/* 背景画像の上に直接載るヒーロー文字は、太さと暗い縁取りを強める。 */
+body.site-glow .label,
+body.site-glow .lead {
+  font-weight: 900;
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.92),
+    0 0 10px rgba(0, 0, 0, 0.58),
+    0 0 14px rgba(164, 255, 240, 0.28);
+}
+
+/* 各カード内の主要本文を読みやすくする。 */
+body.site-glow .card p,
+body.site-glow .card li,
+body.site-glow .download-body p,
+body.site-glow .download-info li,
+body.site-glow .quick-info dd,
+body.site-glow .music-intro,
+body.site-glow .activity-card p,
+body.site-glow .tweet-list p,
+body.site-glow .update-list span,
+body.site-glow .staff-card p,
+body.site-glow .link-card p,
+body.site-glow .contact-card p,
+body.site-glow .work-body p,
+body.site-glow .history-item p,
+body.site-glow .voice-item p,
+body.site-glow .log-article p,
+body.site-glow .zip-card p {
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.72);
+}
+
+/* 情報ラベル、日付、注記も背景に埋もれないようにする。 */
+body.site-glow .quick-info dt,
+body.site-glow .download-info strong,
+body.site-glow .staff-role,
+body.site-glow .note,
+body.site-glow .mini-log time,
+body.site-glow .tweet-list time,
+body.site-glow .update-list time {
+  font-weight: 900;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.78);
+}
+
+/* ボタン文字を明瞭にする。 */
+body.site-glow .button {
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
