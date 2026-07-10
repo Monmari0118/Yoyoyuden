@@ -2119,3 +2119,179 @@ body.season-tanabata .update-list time {
     animation: none;
   }
 }
+
+
+/* ===== v13 常設発光テーマ ===== */
+
+body.site-glow {
+  --bg: #0a2733;
+  --panel: #17283a;
+  --text: #f8fbff;
+  --muted: #d2dced;
+  --line: #70c9c2;
+  --accent: #a4fff0;
+  --accent-blue: #b4c3ff;
+  background:
+    linear-gradient(rgba(7, 27, 35, 0.38), rgba(6, 30, 31, 0.72)),
+    radial-gradient(ellipse at 16% 10%, rgba(88, 255, 226, 0.28), transparent 32rem),
+    radial-gradient(ellipse at 84% 12%, rgba(137, 126, 255, 0.22), transparent 34rem),
+    radial-gradient(ellipse at 50% 50%, rgba(47, 185, 255, 0.18), transparent 46rem),
+    url("assets/site-bg.png") center top / cover fixed,
+    url("assets/bg-leaves.png") center top / cover fixed,
+    var(--bg);
+}
+
+body.site-glow::before {
+  background:
+    radial-gradient(circle at 15% 18%, rgba(255, 255, 255, 0.34) 0 1.5px, transparent 3px),
+    radial-gradient(circle at 32% 38%, rgba(156, 255, 237, 0.30) 0 1.5px, transparent 3px),
+    radial-gradient(circle at 70% 22%, rgba(255, 246, 190, 0.30) 0 1.5px, transparent 3px),
+    radial-gradient(circle at 87% 48%, rgba(196, 176, 255, 0.28) 0 1.5px, transparent 3px),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.06), transparent 48%);
+  animation: siteGlowFloat 7s ease-in-out infinite alternate;
+}
+
+body.site-glow::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.92) 0 1px, transparent 2px),
+    radial-gradient(circle, rgba(151,255,237,0.72) 0 1px, transparent 2px),
+    radial-gradient(circle, rgba(255,231,164,0.70) 0 1px, transparent 2px);
+  background-size: 150px 150px, 220px 220px, 300px 300px;
+  background-position: 0 0, 44px 82px, 96px 24px;
+  mix-blend-mode: screen;
+  opacity: 0.48;
+  animation: siteTwinkle 5s ease-in-out infinite alternate;
+}
+
+body.site-glow .site-header {
+  background: linear-gradient(90deg, rgba(7, 39, 47, 0.92), rgba(10, 32, 55, 0.88), rgba(8, 47, 40, 0.92));
+  border-bottom-color: rgba(164, 255, 240, 0.32);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.26);
+}
+
+body.site-glow .site-nav {
+  grid-template-columns: repeat(5, max-content);
+  justify-content: center;
+}
+
+body.site-glow .site-nav a,
+body.site-glow .section-head h2,
+body.site-glow .page-title,
+body.site-glow .card h3,
+body.site-glow .download-panel h3,
+body.site-glow .activity-card h3,
+body.site-glow .staff-card h3,
+body.site-glow .zip-card h3 {
+  text-shadow:
+    0 0 8px rgba(164, 255, 240, 0.25),
+    0 0 18px rgba(135, 170, 255, 0.16);
+}
+
+body.site-glow .section-kicker,
+body.site-glow .label,
+body.site-glow .mini-log time,
+body.site-glow .tweet-list time,
+body.site-glow .update-list time {
+  color: #a4fff0;
+  text-shadow: 0 0 12px rgba(164, 255, 240, 0.35);
+}
+
+body.site-glow .download-panel {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(164, 255, 240, 0.58);
+  background:
+    radial-gradient(circle at 10% 12%, rgba(164, 255, 240, 0.18), transparent 38%),
+    radial-gradient(circle at 88% 84%, rgba(161, 148, 255, 0.15), transparent 42%),
+    rgba(20, 34, 52, 0.88);
+  box-shadow:
+    0 18px 48px rgba(0, 0, 0, 0.34),
+    0 0 22px rgba(114, 255, 232, 0.22),
+    inset 0 0 18px rgba(137, 171, 255, 0.07);
+  animation: downloadPanelGlow 3.8s ease-in-out infinite alternate;
+}
+
+body.site-glow .download-panel::before {
+  content: "";
+  position: absolute;
+  inset: -45% -25%;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.10) 48%, transparent 61%);
+  transform: translateX(-42%);
+  animation: downloadShine 6.5s ease-in-out infinite;
+}
+
+body.site-glow .download-action .button,
+body.site-glow .hero-buttons .button,
+body.site-glow .music-preview-card .button,
+body.site-glow .zip-card .button {
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.28),
+    0 0 16px rgba(142, 255, 232, 0.22);
+}
+
+body.site-glow .button.primary {
+  background: linear-gradient(135deg, rgba(150, 255, 234, 0.98), rgba(145, 190, 255, 0.96), rgba(255, 225, 157, 0.92));
+  color: #07131b;
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.30),
+    0 0 18px rgba(142, 255, 232, 0.34),
+    0 0 34px rgba(144, 181, 255, 0.18);
+}
+
+@keyframes siteGlowFloat {
+  from { opacity: 0.72; transform: translate3d(0, 0, 0); }
+  to { opacity: 1; transform: translate3d(0, -7px, 0); }
+}
+
+@keyframes siteTwinkle {
+  from { opacity: 0.30; transform: translate3d(0, 0, 0) scale(1); }
+  to { opacity: 0.68; transform: translate3d(7px, -9px, 0) scale(1.01); }
+}
+
+@keyframes downloadPanelGlow {
+  from {
+    box-shadow:
+      0 18px 48px rgba(0, 0, 0, 0.34),
+      0 0 18px rgba(114, 255, 232, 0.14),
+      inset 0 0 18px rgba(137, 171, 255, 0.05);
+  }
+  to {
+    box-shadow:
+      0 20px 52px rgba(0, 0, 0, 0.36),
+      0 0 30px rgba(114, 255, 232, 0.30),
+      inset 0 0 24px rgba(137, 171, 255, 0.10);
+  }
+}
+
+@keyframes downloadShine {
+  0%, 28% { transform: translateX(-55%); opacity: 0; }
+  40% { opacity: 0.9; }
+  64%, 100% { transform: translateX(58%); opacity: 0; }
+}
+
+@media (max-width: 1180px) {
+  body.site-glow .site-nav {
+    grid-template-columns: repeat(3, max-content);
+  }
+}
+
+@media (max-width: 720px) {
+  body.site-glow .site-nav {
+    grid-template-columns: repeat(2, max-content);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.site-glow::before,
+  body.site-glow::after,
+  body.site-glow .download-panel,
+  body.site-glow .download-panel::before {
+    animation: none;
+  }
+}
