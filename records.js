@@ -1,8 +1,8 @@
 window.yoyoyudenRecords = {
   tweets: [
                            {
-      date: "2026-07-10",
-      label: "2026.07.10",
+      date: "2026-07-07",
+      label: "2026.07.07",
       text: "AIに溺れる者は自我が無くなり、AIを使わない者はAIに負けているのだ（み）"
     },
                            {

@@ -2295,3 +2295,128 @@ body.site-glow .button.primary {
     animation: none;
   }
 }
+
+
+/* ===== v14 ナビゲーション詰め・ダウンロード発光強化 ===== */
+
+/* 9項目を1列に揃え、右端の空白をなくす */
+body.site-glow .header-inner {
+  min-height: 94px;
+  padding-block: 12px;
+}
+
+body.site-glow .site-nav {
+  width: min(1500px, 100%);
+  min-height: 68px;
+  grid-template-columns: repeat(9, max-content);
+  justify-content: center;
+  align-content: center;
+  column-gap: clamp(24px, 2.6vw, 48px);
+  row-gap: 0;
+}
+
+/* ダウンロードボタンに明確な光の走査と星の瞬きを追加 */
+body.site-glow .download-action .button {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  border-color: rgba(203, 255, 247, 0.78);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.30),
+    0 0 18px rgba(142, 255, 232, 0.54),
+    0 0 38px rgba(145, 190, 255, 0.32),
+    inset 0 0 12px rgba(255, 255, 255, 0.18);
+  animation: downloadButtonPulse 1.8s ease-in-out infinite alternate;
+}
+
+body.site-glow .download-action .button::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -9px;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 24%, rgba(255,255,255,0.96) 0 1.5px, transparent 3px),
+    radial-gradient(circle at 82% 18%, rgba(174,255,240,0.96) 0 1.5px, transparent 3px),
+    radial-gradient(circle at 92% 76%, rgba(255,229,166,0.92) 0 1.5px, transparent 3px),
+    radial-gradient(circle at 18% 82%, rgba(190,177,255,0.90) 0 1.5px, transparent 3px);
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.88));
+  opacity: 0.42;
+  animation: downloadSparkle 1.35s steps(2, end) infinite;
+}
+
+body.site-glow .download-action .button::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 24%, rgba(255,255,255,0.78) 45%, transparent 66%);
+  transform: translateX(-145%);
+  mix-blend-mode: screen;
+  animation: downloadButtonShine 2.4s ease-in-out infinite;
+}
+
+/* 準備中ボタンは押せない状態を保ちつつ、弱い発光だけ残す */
+body.site-glow .download-action .button.disabled {
+  animation: disabledButtonGlow 2.8s ease-in-out infinite alternate;
+}
+
+body.site-glow .download-action .button.disabled::after {
+  opacity: 0.32;
+}
+
+@keyframes downloadButtonPulse {
+  from {
+    transform: translateY(0) scale(1);
+    filter: brightness(1);
+  }
+  to {
+    transform: translateY(-1px) scale(1.025);
+    filter: brightness(1.14);
+  }
+}
+
+@keyframes downloadSparkle {
+  0%, 100% { opacity: 0.32; transform: rotate(0deg) scale(0.96); }
+  50% { opacity: 1; transform: rotate(2deg) scale(1.06); }
+}
+
+@keyframes downloadButtonShine {
+  0%, 22% { transform: translateX(-145%); opacity: 0; }
+  34% { opacity: 0.96; }
+  62%, 100% { transform: translateX(145%); opacity: 0; }
+}
+
+@keyframes disabledButtonGlow {
+  from { box-shadow: 0 0 10px rgba(164,255,240,0.14); }
+  to { box-shadow: 0 0 22px rgba(164,255,240,0.28); }
+}
+
+@media (max-width: 1320px) {
+  body.site-glow .site-nav {
+    grid-template-columns: repeat(5, max-content);
+    row-gap: 16px;
+  }
+}
+
+@media (max-width: 900px) {
+  body.site-glow .site-nav {
+    grid-template-columns: repeat(3, max-content);
+  }
+}
+
+@media (max-width: 620px) {
+  body.site-glow .site-nav {
+    grid-template-columns: repeat(2, max-content);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.site-glow .download-action .button,
+  body.site-glow .download-action .button::before,
+  body.site-glow .download-action .button::after {
+    animation: none;
+  }
+}
