@@ -3,7 +3,243 @@ document.addEventListener("DOMContentLoaded", () => {
   initSmoothScroll();
   initScreenshotSlider();
   renderActivityRecords();
+  initLeafParticles();
+  initScrollReveal();
+  initScrollSpy();
 });
+
+/* ===== 舞い散る葉のパーティクル ===== */
+
+function initLeafParticles() {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  if (reducedMotion.matches) {
+    return;
+  }
+
+  const canvas = document.createElement("canvas");
+  canvas.className = "leaf-canvas";
+  canvas.setAttribute("aria-hidden", "true");
+  document.body.appendChild(canvas);
+
+  const ctx = canvas.getContext("2d");
+
+  // テーマに合わせた葉の色（緑〜翡翠、たまに金色）
+  const LEAF_COLORS = [
+    "rgba(142, 240, 212, ALPHA)",
+    "rgba(112, 198, 112, ALPHA)",
+    "rgba(77, 160, 98, ALPHA)",
+    "rgba(164, 255, 240, ALPHA)",
+    "rgba(255, 231, 164, ALPHA)"
+  ];
+
+  let width = 0;
+  let height = 0;
+  let leaves = [];
+
+  const makeLeaf = (randomY) => {
+    const depth = 0.35 + Math.random() * 0.65; // 奥行き（大きさ・速度・濃さに影響）
+    return {
+      x: Math.random() * width,
+      y: randomY ? Math.random() * height : -30,
+      size: 7 + depth * 11,
+      speedY: 0.35 + depth * 0.75,
+      drift: 0.2 + Math.random() * 0.5,
+      swayPhase: Math.random() * Math.PI * 2,
+      swaySpeed: 0.006 + Math.random() * 0.012,
+      angle: Math.random() * Math.PI * 2,
+      spin: (Math.random() - 0.5) * 0.02,
+      color: LEAF_COLORS[Math.floor(Math.random() * LEAF_COLORS.length)],
+      alpha: 0.28 + depth * 0.45
+    };
+  };
+
+  const resize = () => {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const count = Math.min(26, Math.max(10, Math.round(width / 60)));
+
+    while (leaves.length < count) {
+      leaves.push(makeLeaf(true));
+    }
+
+    leaves.length = count;
+  };
+
+  const drawLeaf = (leaf) => {
+    ctx.save();
+    ctx.translate(leaf.x, leaf.y);
+    ctx.rotate(leaf.angle + Math.sin(leaf.swayPhase) * 0.5);
+
+    const s = leaf.size;
+    ctx.fillStyle = leaf.color.replace("ALPHA", leaf.alpha.toFixed(2));
+    ctx.beginPath();
+    ctx.moveTo(0, -s);
+    ctx.quadraticCurveTo(s * 0.72, -s * 0.25, 0, s);
+    ctx.quadraticCurveTo(-s * 0.72, -s * 0.25, 0, -s);
+    ctx.fill();
+
+    // 中央の葉脈
+    ctx.strokeStyle = "rgba(6, 22, 24, " + (leaf.alpha * 0.55).toFixed(2) + ")";
+    ctx.lineWidth = Math.max(0.6, s * 0.07);
+    ctx.beginPath();
+    ctx.moveTo(0, -s * 0.7);
+    ctx.lineTo(0, s * 0.8);
+    ctx.stroke();
+
+    ctx.restore();
+  };
+
+  const step = () => {
+    ctx.clearRect(0, 0, width, height);
+
+    for (const leaf of leaves) {
+      leaf.swayPhase += leaf.swaySpeed * 16;
+      leaf.x += Math.sin(leaf.swayPhase) * 0.6 + leaf.drift * 0.3;
+      leaf.y += leaf.speedY;
+      leaf.angle += leaf.spin;
+
+      if (leaf.y > height + 40 || leaf.x > width + 60) {
+        Object.assign(leaf, makeLeaf(false));
+        leaf.x = Math.random() * width - 40;
+      }
+
+      drawLeaf(leaf);
+    }
+
+    animationId = window.requestAnimationFrame(step);
+  };
+
+  let animationId = 0;
+
+  resize();
+  window.addEventListener("resize", resize);
+  animationId = window.requestAnimationFrame(step);
+
+  // 途中で「動きを減らす」に切り替えた場合は停止して消す
+  reducedMotion.addEventListener("change", (event) => {
+    if (event.matches) {
+      window.cancelAnimationFrame(animationId);
+      canvas.remove();
+    }
+  });
+}
+
+/* ===== スクロールで要素をふわっと表示 ===== */
+
+function initScrollReveal() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+
+  if (!("IntersectionObserver" in window)) {
+    return;
+  }
+
+  const selector = [
+    ".section-head",
+    ".card",
+    ".download-panel",
+    ".pv-card",
+    ".activity-card",
+    ".staff-card",
+    ".link-card",
+    ".contact-card > div",
+    ".music-preview-card",
+    ".zip-card",
+    ".secret-card",
+    ".quick-info > div",
+    ".myaga-work",
+    ".tengoku-illust-card",
+    ".history-item",
+    ".log-article"
+  ].join(", ");
+
+  const targets = Array.from(document.querySelectorAll(selector));
+
+  if (targets.length === 0) {
+    return;
+  }
+
+  // 同じ親を持つ要素は順番に少しずつ遅らせて現れる
+  const siblingCounts = new Map();
+
+  targets.forEach((el) => {
+    const parent = el.parentElement;
+    const index = siblingCounts.get(parent) || 0;
+    siblingCounts.set(parent, index + 1);
+    el.classList.add("reveal");
+    el.style.setProperty("--reveal-delay", Math.min(index * 90, 360) + "ms");
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) {
+        return;
+      }
+
+      const el = entry.target;
+      el.classList.add("is-in");
+      observer.unobserve(el);
+
+      window.setTimeout(() => {
+        el.classList.add("is-done");
+      }, 1300);
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: "0px 0px -8% 0px"
+  });
+
+  targets.forEach((el) => observer.observe(el));
+}
+
+/* ===== ナビの現在地ハイライト（トップページのみ） ===== */
+
+function initScrollSpy() {
+  const navLinks = Array.from(document.querySelectorAll('.site-nav a[href^="#"]'));
+
+  if (navLinks.length === 0 || !("IntersectionObserver" in window)) {
+    return;
+  }
+
+  const linkByHash = new Map();
+
+  navLinks.forEach((link) => {
+    linkByHash.set(link.getAttribute("href"), link);
+  });
+
+  const sections = Array.from(document.querySelectorAll("section[id]"))
+    .filter((section) => linkByHash.has("#" + section.id));
+
+  if (sections.length === 0) {
+    return;
+  }
+
+  const setCurrent = (hash) => {
+    navLinks.forEach((link) => {
+      link.classList.toggle("is-current", link.getAttribute("href") === hash);
+    });
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setCurrent("#" + entry.target.id);
+      }
+    });
+  }, {
+    rootMargin: "-38% 0px -55% 0px",
+    threshold: 0
+  });
+
+  sections.forEach((section) => observer.observe(section));
+}
 
 function initSmoothScroll() {
   const samePageLinks = document.querySelectorAll('a[href^="#"]');
