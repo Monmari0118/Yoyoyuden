@@ -3098,3 +3098,18 @@ body.site-glow .site-nav a.is-current {
     font-size: 22px;
   }
 }
+
+/* ===== v22 カード内の中央寄せ調整 ===== */
+
+/* 制作日記カード：本文とボタンを中央に */
+.activity-diary-body {
+  align-items: center;
+  text-align: center;
+}
+
+/* 音楽室ジャケットカード：タイトルとボタンを中央に */
+.zip-card-cover .zip-body {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
