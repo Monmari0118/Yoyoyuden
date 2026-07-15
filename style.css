@@ -2831,3 +2831,270 @@ body.site-glow .site-nav a.is-current {
     animation: none;
   }
 }
+
+/* ===== v21 制作日記・秘密のコード・メールフォーム・音楽ジャケット ===== */
+
+/* --- 秘密のコード（2枚並び） --- */
+.secret-list.secret-grid-two {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 860px;
+}
+
+.secret-card h3 {
+  text-align: center;
+}
+
+.secret-code {
+  margin: 0 0 12px;
+  padding: 12px 16px;
+  border: 1px dashed rgba(164, 255, 240, 0.55);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.34);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-align: center;
+  color: #a4fff0;
+  text-shadow: 0 0 12px rgba(164, 255, 240, 0.35);
+  user-select: all; /* クリックでコード全体を選択できる */
+}
+
+.secret-item {
+  margin: 0;
+  text-align: center;
+  font-weight: 800;
+}
+
+/* --- 制作日記ページ --- */
+.devlog-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 16px;
+  border-bottom: 1px solid rgba(96, 132, 100, 0.48);
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+}
+
+.devlog-head time {
+  color: var(--accent);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.devlog-head h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.devlog-text {
+  white-space: pre-line;
+  margin: 0 0 16px;
+  font-size: 16px;
+  line-height: 1.95;
+}
+
+.devlog-figure {
+  margin: 22px auto;
+  max-width: 640px;
+  border: 1px solid rgba(96, 132, 100, 0.55);
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.28);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.30);
+}
+
+.devlog-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.devlog-figure figcaption {
+  padding: 8px 12px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+.devlog-sign {
+  text-align: right;
+  color: var(--accent);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  margin: 0 0 6px;
+}
+
+.devlog-sign::before {
+  content: "――― ";
+  color: rgba(164, 255, 240, 0.45);
+}
+
+.devlog-divider {
+  border: none;
+  border-top: 1px dashed rgba(142, 240, 212, 0.42);
+  margin: 24px 0;
+}
+
+/* --- 問い合わせ --- */
+.contact-card.contact-two-cards {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 980px;
+}
+
+.contact-form-card {
+  max-width: 980px;
+  margin: 16px auto 0;
+  padding: 26px;
+  border: 1px solid rgba(96, 132, 100, 0.62);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at top left, rgba(142, 255, 224, 0.07), transparent 45%),
+    rgba(22, 29, 42, 0.88);
+  box-shadow: var(--shadow);
+}
+
+.contact-form-card h3 {
+  margin: 0 0 6px;
+}
+
+.contact-form-card .note {
+  margin: 0 0 18px;
+}
+
+.contact-form {
+  display: grid;
+  gap: 16px;
+}
+
+.contact-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--muted);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(96, 132, 100, 0.62);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.32);
+  color: var(--text);
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: rgba(164, 255, 240, 0.75);
+  box-shadow: 0 0 0 3px rgba(164, 255, 240, 0.16);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(210, 220, 237, 0.45);
+}
+
+.contact-form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.contact-form button.button {
+  cursor: pointer;
+  min-width: 220px;
+  font-size: 17px;
+}
+
+.form-success {
+  margin: 0 0 18px;
+  padding: 14px 18px;
+  border: 1px solid rgba(142, 255, 232, 0.55);
+  border-radius: 12px;
+  background: rgba(114, 255, 232, 0.10);
+  color: #a4fff0;
+  font-weight: 800;
+  text-align: center;
+  box-shadow: 0 0 18px rgba(114, 255, 232, 0.14);
+}
+
+/* --- 音楽室 ジャケット付きダウンロードカード --- */
+.zip-card-cover {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 20px;
+  align-items: center;
+}
+
+.zip-cover {
+  border: 1px solid rgba(96, 132, 100, 0.55);
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.28);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);
+}
+
+.zip-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.6s ease;
+}
+
+.zip-card-cover:hover .zip-cover img {
+  transform: scale(1.04);
+}
+
+.zip-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.zip-body h3 {
+  margin: 0;
+}
+
+/* --- スマホ調整 --- */
+@media (max-width: 820px) {
+  .secret-list.secret-grid-two,
+  .contact-card.contact-two-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .zip-card-cover {
+    grid-template-columns: 1fr;
+  }
+
+  .zip-cover {
+    max-width: 320px;
+    margin-inline: auto;
+  }
+
+  .zip-body {
+    align-items: center;
+    text-align: center;
+  }
+
+  .devlog-head h2 {
+    font-size: 21px;
+  }
+
+  .secret-code {
+    font-size: 22px;
+  }
+}

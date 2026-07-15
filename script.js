@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initSmoothScroll();
   initScreenshotSlider();
   renderActivityRecords();
+  renderDevlogPage();
+  initContactForm();
   initLeafParticles();
   initScrollReveal();
   initScrollSpy();
@@ -157,7 +159,9 @@ function initScrollReveal() {
     ".myaga-work",
     ".tengoku-illust-card",
     ".history-item",
-    ".log-article"
+    ".log-article",
+    ".devlog-article",
+    ".contact-form-card"
   ].join(", ");
 
   const targets = Array.from(document.querySelectorAll(selector));
@@ -514,77 +518,91 @@ function renderDevlogPage() {
 
   target.innerHTML = "";
 
-  window.yoyoyudenDevlog.forEach((item) => {
+  window.yoyoyudenDevlog.forEach((entry) => {
     const article = document.createElement("article");
     article.className = "devlog-article";
 
-    const meta = document.createElement("p");
-    meta.className = "log-tag";
-    meta.textContent = [item.label, item.category].filter(Boolean).join(" / ");
+    const head = document.createElement("div");
+    head.className = "devlog-head";
 
-    const title = document.createElement("h2");
-    title.textContent = item.title || "";
+    const time = document.createElement("time");
+    time.dateTime = entry.date || "";
+    time.textContent = entry.label || "";
+    head.appendChild(time);
 
-    const text = document.createElement("p");
-    text.textContent = item.text || "";
+    if (entry.title) {
+      const h2 = document.createElement("h2");
+      h2.textContent = entry.title;
+      head.appendChild(h2);
+    }
 
-    article.appendChild(meta);
-    article.appendChild(title);
-    article.appendChild(text);
+    article.appendChild(head);
 
-    if (Array.isArray(item.images) && item.images.length > 0) {
-      const gallery = document.createElement("div");
-      gallery.className = "devlog-gallery";
+    (entry.blocks || []).forEach((block) => {
+      if (block.type === "text") {
+        const p = document.createElement("p");
+        p.className = "devlog-text";
+        p.textContent = block.text || "";
+        article.appendChild(p);
+        return;
+      }
 
-      item.images.forEach((image) => {
-        if (!image.src) {
-          return;
+      if (block.type === "image" && block.src) {
+        const figure = document.createElement("figure");
+        figure.className = "devlog-figure";
+
+        const img = document.createElement("img");
+        img.src = block.src;
+        img.alt = block.alt || "";
+        img.loading = "lazy";
+        figure.appendChild(img);
+
+        if (block.caption) {
+          const caption = document.createElement("figcaption");
+          caption.textContent = block.caption;
+          figure.appendChild(caption);
         }
 
-        const figure = document.createElement("figure");
-        const img = document.createElement("img");
-        const caption = document.createElement("figcaption");
+        article.appendChild(figure);
+        return;
+      }
 
-        img.src = image.src;
-        img.alt = image.alt || "";
-        img.loading = "lazy";
-        img.addEventListener("error", () => {
-          figure.classList.add("is-placeholder");
-          img.remove();
-        });
+      if (block.type === "sign") {
+        const p = document.createElement("p");
+        p.className = "devlog-sign";
+        p.textContent = block.text || "";
+        article.appendChild(p);
+        return;
+      }
 
-        caption.textContent = image.alt || "";
-
-        figure.appendChild(img);
-        figure.appendChild(caption);
-        gallery.appendChild(figure);
-      });
-
-      article.appendChild(gallery);
-    }
-
-    if (Array.isArray(item.qa) && item.qa.length > 0) {
-      const qaList = document.createElement("div");
-      qaList.className = "devlog-qa";
-
-      item.qa.forEach((qa) => {
-        const block = document.createElement("div");
-
-        const question = document.createElement("p");
-        question.className = "devlog-question";
-        question.textContent = qa.question || "";
-
-        const answer = document.createElement("p");
-        answer.textContent = qa.answer || "";
-
-        block.appendChild(question);
-        block.appendChild(answer);
-        qaList.appendChild(block);
-      });
-
-      article.appendChild(qaList);
-    }
+      if (block.type === "divider") {
+        const hr = document.createElement("hr");
+        hr.className = "devlog-divider";
+        article.appendChild(hr);
+      }
+    });
 
     target.appendChild(article);
   });
+}
+
+/* ===== 問い合わせフォーム（送信完了メッセージ） ===== */
+
+function initContactForm() {
+  const formCard = document.querySelector(".contact-form-card");
+
+  if (!formCard) {
+    return;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.get("sent") !== "1") {
+    return;
+  }
+
+  const success = document.createElement("p");
+  success.className = "form-success";
+  success.textContent = "送信しました。お問い合わせありがとうございました！";
+  formCard.insertBefore(success, formCard.querySelector("form"));
 }

@@ -211,7 +211,7 @@
 
             <div class="download-action">
               <a class="button disabled" href="#" aria-disabled="true">
-                外伝準備中
+                開発中
               </a>
               <p class="note">
                 公開後はこちらに追加予定です。
@@ -275,12 +275,25 @@
           <h2>秘密のパスワード</h2>
         </div>
 
-        <div class="secret-list">
+        <div class="secret-list secret-grid-two">
           <!-- 合言葉を追加するときは、この下に secret-card を追加 -->
+          <article class="secret-card">
+            <p class="secret-label">Secret Code</p>
+            <h3>（7）秘密のコード</h3>
+            <p class="secret-code">fusigi002</p>
+            <p class="secret-item">入手アイテム：ふしぎなくすり</p>
+          </article>
+
+          <article class="secret-card">
+            <p class="secret-label">Secret Code</p>
+            <h3>（8）秘密のコード</h3>
+            <p class="secret-code">mirai002</p>
+            <p class="secret-item">入手アイテム：未来の葉っぱ</p>
+          </article>
         </div>
 
         <p class="note center-text">
-          ※過去にFantiaで配布していた「秘密のパスワード」の一部をここに置く予定です。
+          ※過去にFantiaで配布していた「秘密のパスワード」の一部を掲載しています。
         </p>
       </div>
     </section>
@@ -299,8 +312,8 @@
             </div>
 
             <div class="activity-diary-body">
-              <p>準備中</p>
-              <a class="button disabled" href="#" aria-disabled="true">準備中</a>
+              <p>制作の裏側をゆるく綴っていきます。</p>
+              <a class="button primary" href="diary.html">制作日記を読む</a>
             </div>
           </section>
 
@@ -415,7 +428,7 @@
           <h2>問い合わせ</h2>
         </div>
 
-        <div class="contact-card contact-three-cards">
+        <div class="contact-card contact-two-cards">
           <div>
             <h3>モン魔理 X（旧Twitter）</h3>
             <p>
@@ -429,13 +442,38 @@
               <a href="https://x.com/yoyoyuden" target="_blank" rel="noopener">東方葉々癒伝</a>
             </p>
           </div>
+        </div>
 
-          <div>
-            <h3>メール</h3>
-            <p>
-              準備中
-            </p>
-          </div>
+        <div class="contact-form-card">
+          <h3>メールフォーム</h3>
+          <p class="note">
+            返信が必要な場合は、あなたのメールアドレスを正しくご記入ください。
+          </p>
+
+          <form class="contact-form" action="https://formsubmit.co/yoyoyuden@gmail.com" method="POST">
+            <input type="hidden" name="_next" value="https://monmari0118.github.io/Yoyoyuden/index.html?sent=1#contact">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="_honey" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <label>
+              件名
+              <input type="text" name="_subject" required maxlength="120" placeholder="例：感想、バグ報告など">
+            </label>
+
+            <label>
+              あなたのメールアドレス
+              <input type="email" name="email" required placeholder="you@example.com">
+            </label>
+
+            <label>
+              内容
+              <textarea name="message" rows="7" required placeholder="お問い合わせ内容"></textarea>
+            </label>
+
+            <div class="contact-form-actions">
+              <button class="button primary" type="submit">送信</button>
+            </div>
+          </form>
         </div>
       </div>
     </section>
