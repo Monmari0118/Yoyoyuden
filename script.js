@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   document.body.classList.add("site-glow");
+  initWelcomeGate();
   initSmoothScroll();
   initScreenshotSlider();
   renderActivityRecords();
@@ -9,6 +10,46 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initScrollSpy();
 });
+
+/* ===== ウェルカム画面（初回のみ表示） ===== */
+
+function initWelcomeGate() {
+  const gate = document.querySelector(".welcome-gate");
+
+  if (!gate) {
+    return;
+  }
+
+  const enterButton = gate.querySelector("[data-welcome-enter]");
+  const leaveButton = gate.querySelector("[data-welcome-leave]");
+
+  if (enterButton) {
+    enterButton.addEventListener("click", () => {
+      try {
+        localStorage.setItem("yoyoyudenWelcomeSeen", "1");
+      } catch (error) {
+        // プライベートモード等で保存できなくても入場は可能にする
+      }
+
+      gate.classList.add("is-fading");
+
+      window.setTimeout(() => {
+        document.documentElement.classList.add("welcome-seen");
+      }, 600);
+    });
+  }
+
+  if (leaveButton) {
+    leaveButton.addEventListener("click", () => {
+      window.close();
+
+      // スクリプトからタブを閉じられないブラウザでは空白ページへ退避する
+      window.setTimeout(() => {
+        window.location.href = "about:blank";
+      }, 300);
+    });
+  }
+}
 
 /* ===== 舞い散る葉のパーティクル ===== */
 
@@ -161,7 +202,9 @@ function initScrollReveal() {
     ".history-item",
     ".log-article",
     ".devlog-article",
-    ".contact-form-card"
+    ".contact-form-card",
+    ".qa-item",
+    ".qa-jump-card"
   ].join(", ");
 
   const targets = Array.from(document.querySelectorAll(selector));

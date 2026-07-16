@@ -15,6 +15,15 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 
+  <!-- 入場済みならウェルカム画面を描画前に非表示にする -->
+  <script>
+    try {
+      if (localStorage.getItem("yoyoyudenWelcomeSeen") === "1") {
+        document.documentElement.classList.add("welcome-seen");
+      }
+    } catch (error) {}
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -23,6 +32,33 @@
 </head>
 
 <body>
+  <div class="welcome-gate">
+    <div class="welcome-card">
+      <p class="welcome-kicker">Welcome</p>
+      <h2 class="welcome-title">ようこそ</h2>
+
+      <div class="welcome-text">
+        <p>
+          当サイトは「東方自然癒」という、東方Projectの二次創作フリーゲームを題材とした三次創作、「東方葉々癒伝」に関するゲームの制作日記やお知らせ、雑多類を書き記しております。東方の二次創作及び三次創作をネタにしているため、そういった類いを好まない方には当サイトの観覧をオススメしません。
+        </p>
+        <p>
+          また、当創作の性質上「東方自然癒」という東方の二次創作ゲームを知らない方からすると、日本語に近い何かの文字ばかりのため、そういった方にも当サイトの観覧をオススメ出来ません。予めご了承ください。
+        </p>
+      </div>
+
+      <div class="welcome-actions">
+        <button class="button primary" type="button" data-welcome-enter>それでも進む</button>
+        <button class="button" type="button" data-welcome-leave>さよーなら</button>
+      </div>
+    </div>
+  </div>
+
+  <noscript>
+    <style>
+      .welcome-gate { display: none !important; }
+    </style>
+  </noscript>
+
   <header class="site-header">
     <div class="container header-inner">
       <a class="site-title" href="#top">東方葉々癒伝</a>
@@ -35,6 +71,7 @@
         <a href="#secret">秘密のパスワード</a>
         <a href="#activity">制作日記</a>
         <a href="#staff">スタッフ</a>
+        <a href="qa.html">Q&amp;A</a>
         <a href="#links">関連リンク</a>
         <a href="#contact">問い合わせ</a>
       </nav>
@@ -396,6 +433,22 @@
               <dd>東方Project(ZUN) / 東方自然癒(ASATO)</dd>
             </div>
           </dl>
+        </div>
+      </div>
+    </section>
+
+    <section id="qa" class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-kicker">Q&amp;A</p>
+          <h2>Q&amp;A</h2>
+        </div>
+
+        <div class="qa-jump-card">
+          <p>
+            著作権関係や制作方針など、ぱっと見て分かりにくいあれこれをまとめています。
+          </p>
+          <a class="button primary" href="qa.html">Q&amp;Aを見る</a>
         </div>
       </div>
     </section>

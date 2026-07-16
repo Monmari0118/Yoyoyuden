@@ -3113,3 +3113,236 @@ body.site-glow .site-nav a.is-current {
   text-align: center;
   justify-content: center;
 }
+
+/* ===== v23 ウェルカム画面・Q&Aページ・ナビ10項目対応 ===== */
+
+/* --- button要素にもリンクと同じ見た目を適用 --- */
+button.button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* --- ウェルカム画面（初回のみ全画面表示） --- */
+.welcome-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  overflow-y: auto;
+  background:
+    radial-gradient(ellipse at 18% 12%, rgba(88, 255, 226, 0.14), transparent 30rem),
+    radial-gradient(ellipse at 82% 16%, rgba(137, 126, 255, 0.12), transparent 32rem),
+    radial-gradient(ellipse at 50% 85%, rgba(47, 185, 255, 0.10), transparent 40rem),
+    rgba(4, 17, 22, 0.96);
+  transition: opacity 0.6s ease;
+}
+
+.welcome-gate.is-fading {
+  opacity: 0;
+  pointer-events: none;
+}
+
+html.welcome-seen .welcome-gate {
+  display: none;
+}
+
+/* ウェルカム表示中は背後のスクロールを止める（ゲートのあるページのみ） */
+html:not(.welcome-seen) body:has(.welcome-gate:not(.is-fading)) {
+  overflow: hidden;
+}
+
+.welcome-card {
+  width: min(720px, 100%);
+  padding: 40px 38px;
+  border: 1px solid rgba(164, 255, 240, 0.38);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at top left, rgba(142, 255, 224, 0.10), transparent 45%),
+    radial-gradient(circle at bottom right, rgba(161, 148, 255, 0.08), transparent 48%),
+    rgba(16, 26, 40, 0.97);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.55),
+    0 0 40px rgba(114, 255, 232, 0.12);
+  text-align: center;
+}
+
+.welcome-kicker {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.welcome-title {
+  margin: 0 0 22px;
+  font-size: clamp(40px, 6vw, 54px);
+  line-height: 1.15;
+  text-shadow:
+    0 0 14px rgba(164, 255, 240, 0.30),
+    0 0 30px rgba(135, 170, 255, 0.18);
+}
+
+.welcome-text {
+  text-align: left;
+}
+
+.welcome-text p {
+  margin: 0 0 14px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 2;
+}
+
+.welcome-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.welcome-actions .button {
+  min-width: 190px;
+  min-height: 52px;
+  font-size: 17px;
+}
+
+@media (max-width: 560px) {
+  .welcome-card {
+    padding: 28px 22px;
+  }
+
+  .welcome-actions .button {
+    min-width: 100%;
+  }
+}
+
+/* --- Q&Aページ --- */
+.qa-intro {
+  max-width: 780px;
+  margin: 0 auto 28px;
+  text-align: center;
+  white-space: pre-line;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 2;
+}
+
+.qa-list {
+  display: grid;
+  gap: 16px;
+  max-width: 880px;
+  margin-inline: auto;
+}
+
+.qa-item {
+  border: 1px solid rgba(96, 132, 100, 0.62);
+  border-radius: var(--radius);
+  padding: 24px 26px;
+  background:
+    radial-gradient(circle at top left, rgba(142, 255, 224, 0.07), transparent 45%),
+    rgba(22, 29, 42, 0.88);
+  box-shadow: var(--shadow);
+}
+
+.qa-question {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0 0 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(96, 132, 100, 0.48);
+  font-size: 19px;
+  line-height: 1.5;
+}
+
+.qa-badge {
+  flex: none;
+  color: var(--accent);
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-shadow: 0 0 12px rgba(164, 255, 240, 0.35);
+}
+
+.qa-answer {
+  margin: 0;
+  white-space: pre-line;
+  font-size: 16px;
+  line-height: 1.95;
+}
+
+.qa-answer::before {
+  content: "A. ";
+  color: var(--accent);
+  font-weight: 900;
+}
+
+@media (max-width: 560px) {
+  .qa-item {
+    padding: 18px;
+  }
+
+  .qa-question {
+    font-size: 17px;
+  }
+}
+
+/* --- ナビ10項目（上段5・下段5）に組み直し --- */
+body.site-glow .site-nav a:nth-child(6) { grid-column: 1 / span 2; grid-row: 2; }
+body.site-glow .site-nav a:nth-child(7) { grid-column: 3 / span 2; grid-row: 2; }
+body.site-glow .site-nav a:nth-child(8) { grid-column: 5 / span 2; grid-row: 2; }
+body.site-glow .site-nav a:nth-child(9) { grid-column: 7 / span 2; grid-row: 2; }
+body.site-glow .site-nav a:nth-child(10) { grid-column: 9 / span 2; grid-row: 2; }
+
+@media (max-width: 980px) {
+  /* 3列×3行 + 最終行1項目を中央へ */
+  body.site-glow .site-nav a:nth-child(10) { grid-column: 3 / span 2 !important; }
+}
+
+@media (max-width: 620px) {
+  /* 2列×5行でちょうど収まるため、最終項目の全幅化を解除 */
+  body.site-glow .site-nav a:last-child {
+    grid-column: auto !important;
+  }
+}
+
+/* ===== v24 index用Q&A誘導カード ===== */
+
+.qa-jump-card {
+  max-width: 640px;
+  margin-inline: auto;
+  padding: 28px 26px;
+  border: 1px solid rgba(96, 132, 100, 0.62);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at top left, rgba(142, 255, 224, 0.08), transparent 45%),
+    rgba(22, 29, 42, 0.88);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  text-align: center;
+}
+
+.qa-jump-card p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.9;
+}
+
+.qa-jump-card .button {
+  min-width: 220px;
+}
+
+@media (max-width: 560px) {
+  .qa-jump-card {
+    padding: 20px 18px;
+  }
+}
