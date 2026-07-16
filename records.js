@@ -96,6 +96,12 @@ window.yoyoyudenRecords = {
   ],
 
   updates: [
+                                      {
+      date: "2026-07-16",
+      label: "2026.07.16",
+      title: "",
+      text: "Q&Aの項目を追加しました。"
+    },
                                   {
       date: "2026-07-15",
       label: "2026.07.15",
