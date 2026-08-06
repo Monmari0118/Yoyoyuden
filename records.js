@@ -1,5 +1,10 @@
 window.yoyoyudenRecords = {
   tweets: [
+                                               {
+      date: "2026-08-07",
+      label: "2026.08.07",
+      text: "今年も葉っぱの日が近いです（モ）"
+    },
                                            {
       date: "2026-07-29",
       label: "2026.07.29",
