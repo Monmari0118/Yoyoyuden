@@ -3346,3 +3346,15 @@ body.site-glow .site-nav a:nth-child(10) { grid-column: 9 / span 2; grid-row: 2;
     padding: 20px 18px;
   }
 }
+
+/* ===== v25 Q&A回答のぶら下げインデント ===== */
+
+/* 「A.」の後に一文字分の間隔を入れ、2行目以降も本文の左端を揃える */
+.qa-answer {
+  padding-left: 2em;
+  text-indent: -2em;
+}
+
+.qa-answer::before {
+  content: "A.　";
+}
