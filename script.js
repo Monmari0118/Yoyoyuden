@@ -323,41 +323,90 @@ function initSmoothScroll() {
 }
 
 function initScreenshotSlider() {
-  const slider = document.querySelector(".screenshot-slider");
+  // 各ページのスライダー（ドットを押すとその画像へ切り替わる）
+  const sliderTypes = [
+    { root: ".screenshot-slider", slide: ".screenshot-slide", interval: 4500, label: "スクリーンショット" },
+    { root: ".myaga-screenshot-slider", slide: ".myaga-screenshot-slide", interval: 4000, label: "スクリーンショット" },
+    { root: ".tengoku-illust-slider", slide: ".tengoku-illust-slide", interval: 7500, label: "イラスト" }
+  ];
 
-  if (!slider) {
-    return;
-  }
+  sliderTypes.forEach((type) => {
+    document.querySelectorAll(type.root).forEach((slider) => {
+      setupSlider(slider, type);
+    });
+  });
+}
 
-  const slides = Array.from(slider.querySelectorAll(".screenshot-slide"));
-  const dots = Array.from(slider.querySelectorAll(".slider-dots span"));
+function setupSlider(slider, type) {
+  const slides = Array.from(slider.querySelectorAll(type.slide));
 
   if (slides.length <= 1) {
     return;
   }
 
+  // CSSアニメーション任せの表示からJS制御へ切り替える
+  slider.classList.add("is-js");
+
+  let dotsWrap = slider.querySelector(".slider-dots");
+
+  if (!dotsWrap) {
+    dotsWrap = document.createElement("div");
+    dotsWrap.className = "slider-dots";
+    slider.appendChild(dotsWrap);
+  }
+
+  dotsWrap.innerHTML = "";
+
+  const dots = slides.map((slide, index) => {
+    slide.classList.toggle("is-active", index === 0);
+
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = index === 0 ? "is-active" : "";
+    dot.setAttribute("aria-label", type.label + (index + 1) + "を表示");
+    dotsWrap.appendChild(dot);
+
+    return dot;
+  });
+
   let currentIndex = 0;
+  let timerId = 0;
 
   const showSlide = (nextIndex) => {
     slides[currentIndex].classList.remove("is-active");
-
-    if (dots[currentIndex]) {
-      dots[currentIndex].classList.remove("is-active");
-    }
+    dots[currentIndex].classList.remove("is-active");
 
     currentIndex = nextIndex;
 
     slides[currentIndex].classList.add("is-active");
-
-    if (dots[currentIndex]) {
-      dots[currentIndex].classList.add("is-active");
-    }
+    dots[currentIndex].classList.add("is-active");
   };
 
-  window.setInterval(() => {
-    const nextIndex = (currentIndex + 1) % slides.length;
-    showSlide(nextIndex);
-  }, 4500);
+  const startTimer = () => {
+    // 「動きを減らす」設定のときは自動送りをせず、ドット操作だけにする
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
+    window.clearInterval(timerId);
+
+    timerId = window.setInterval(() => {
+      showSlide((currentIndex + 1) % slides.length);
+    }, type.interval);
+  };
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      if (index !== currentIndex) {
+        showSlide(index);
+      }
+
+      // 押した直後にすぐ切り替わらないよう、待ち時間を数え直す
+      startTimer();
+    });
+  });
+
+  startTimer();
 }
 
 function renderActivityRecords() {
@@ -585,7 +634,7 @@ function renderDevlogPage() {
       if (block.type === "text") {
         const p = document.createElement("p");
         p.className = "devlog-text";
-        p.textContent = block.text || "";
+        appendTextWithLinks(p, block.text || "");
         article.appendChild(p);
         return;
       }
@@ -626,6 +675,25 @@ function renderDevlogPage() {
     });
 
     target.appendChild(article);
+  });
+}
+
+/* 本文中の http(s) から始まる部分をリンクにする */
+function appendTextWithLinks(target, text) {
+  const parts = text.split(/(https?:\/\/[^\s　（）()「」]+)/g);
+
+  parts.forEach((part) => {
+    if (/^https?:\/\//.test(part)) {
+      const link = document.createElement("a");
+      link.href = part;
+      link.textContent = part;
+      link.target = "_blank";
+      link.rel = "noopener";
+      target.appendChild(link);
+      return;
+    }
+
+    target.appendChild(document.createTextNode(part));
   });
 }
 

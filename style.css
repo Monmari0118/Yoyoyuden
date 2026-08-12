@@ -3358,3 +3358,79 @@ body.site-glow .site-nav a:nth-child(10) { grid-column: 9 / span 2; grid-row: 2;
 .qa-answer::before {
   content: "A.　";
 }
+
+/* ===== v26 スライダーのドットをクリック操作対応 ===== */
+
+/* ドットはボタン要素になったので、押せる見た目と当たり判定を与える */
+.slider-dots {
+  gap: 10px;
+  align-items: center;
+}
+
+.slider-dots button {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: rgba(238, 243, 255, 0.38);
+  cursor: pointer;
+  transition:
+    width 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.slider-dots button:hover {
+  background: rgba(164, 255, 240, 0.75);
+  box-shadow: 0 0 10px rgba(164, 255, 240, 0.55);
+}
+
+.slider-dots button:focus-visible {
+  outline: 2px solid rgba(164, 255, 240, 0.9);
+  outline-offset: 3px;
+}
+
+.slider-dots button.is-active {
+  width: 26px;
+  background: var(--accent);
+  box-shadow: 0 0 12px rgba(164, 255, 240, 0.6);
+}
+
+/* 押しやすいように、見た目より広い当たり判定を重ねる */
+.slider-dots button::before {
+  content: "";
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+}
+
+.slider-dots button {
+  position: relative;
+}
+
+/* --- みゃが・てんごくのスライダーをJS制御へ切り替え --- */
+.myaga-screenshot-slider.is-js .myaga-screenshot-slide,
+.tengoku-illust-slider.is-js .tengoku-illust-slide {
+  animation: none !important;
+  opacity: 0;
+  transition: opacity 900ms ease;
+}
+
+.myaga-screenshot-slider.is-js .myaga-screenshot-slide.is-active,
+.tengoku-illust-slider.is-js .tengoku-illust-slide.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* ドットに重ならないよう、画像の下に余白を作る */
+.myaga-screenshot-slider.is-js .myaga-screenshot-slide img,
+.tengoku-illust-slider.is-js .tengoku-illust-slide img {
+  padding-bottom: 26px;
+}
+
+.screenshot-slider.is-js .screenshot-slide img {
+  padding-bottom: 22px;
+}
