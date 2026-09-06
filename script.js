@@ -647,6 +647,12 @@ function renderDevlogPage() {
         img.src = block.src;
         img.alt = block.alt || "";
         img.loading = "lazy";
+
+        // 画像がまだ置かれていない場合は、枠ごと表示しない
+        img.addEventListener("error", () => {
+          figure.remove();
+        });
+
         figure.appendChild(img);
 
         if (block.caption) {
