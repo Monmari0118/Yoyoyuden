@@ -1,0 +1,114 @@
+/* Optional music-room details. Removing detail-polish restores the old layout. */
+.music-polish-layout {
+  display: contents;
+}
+
+.music-polish-cover,
+.music-polish-track-label {
+  display: none;
+}
+
+body.detail-polish #music .music-polish-layout {
+  display: grid;
+  grid-template-columns: minmax(150px, 190px) minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+}
+
+body.detail-polish #music .music-polish-cover {
+  display: block;
+  width: 100%;
+  max-width: 190px;
+  margin: 0;
+  text-align: center;
+}
+
+body.detail-polish #music .music-polish-cover a {
+  display: block;
+  padding: 5px;
+  border: 1px solid rgba(142, 240, 212, 0.42);
+  border-radius: 4px;
+  background: rgba(8, 20, 18, 0.5);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+body.detail-polish #music .music-polish-cover a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 5px;
+}
+
+body.detail-polish #music .music-polish-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+body.detail-polish #music .music-polish-cover figcaption {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+body.detail-polish #music .music-preview-list {
+  min-width: 0;
+  gap: 12px;
+}
+
+body.detail-polish #music .music-card {
+  min-width: 0;
+  padding: 12px 14px;
+  border-color: rgba(142, 240, 212, 0.32);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.14);
+  transition: border-color 300ms ease, box-shadow 300ms ease;
+}
+
+body.detail-polish #music .music-polish-track-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+body.detail-polish #music .music-polish-playing {
+  visibility: hidden;
+  color: var(--accent);
+  font-size: 13px;
+}
+
+body.detail-polish #music .music-card.is-audio-playing {
+  border-color: rgba(142, 240, 212, 0.8);
+  box-shadow: 0 0 17px rgba(142, 240, 212, 0.17), inset 0 0 10px rgba(142, 240, 212, 0.04);
+}
+
+body.detail-polish #music .is-audio-playing .music-polish-playing {
+  visibility: visible;
+}
+
+@media (max-width: 620px) {
+  body.detail-polish #music .music-polish-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  body.detail-polish #music .music-polish-cover {
+    width: min(180px, 70%);
+    margin-inline: auto;
+  }
+
+  body.detail-polish #music .music-card {
+    padding: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.detail-polish #music .music-card {
+    transition: none;
+  }
+}

@@ -1,0 +1,28 @@
+/* Keep the hidden spam field from inheriting the visible inputs' full width. */
+body.detail-polish .contact-form input.visually-hidden {
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+}
+
+/* The branch sits in the existing section padding, without shifting content. */
+body.detail-polish main > .section:not(.notice-section) {
+  position: relative;
+}
+body.detail-polish main > .section:not(.notice-section)::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(640px, calc(100% - 40px));
+  height: 48px;
+  background: url("assets/ornament-divider.svg") center / contain no-repeat;
+  pointer-events: none;
+  opacity: .85;
+  z-index: 1;
+}
+@media (max-width: 620px) {
+  body.detail-polish main > .section:not(.notice-section)::after { height: 32px; bottom: -6px; }
+}

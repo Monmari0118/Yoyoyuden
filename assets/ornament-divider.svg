@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 48" fill="none">
+  <defs>
+    <linearGradient id="twig" x1="8" y1="24" x2="320" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#9bddac" stop-opacity="0"/><stop offset=".4" stop-color="#8ec9a8" stop-opacity=".62"/><stop offset="1" stop-color="#b4e2bf" stop-opacity=".9"/></linearGradient>
+    <g id="branch">
+      <path d="M8 28C78 22 122 29 173 25S262 20 309 24" stroke="url(#twig)" stroke-width="1"/>
+      <path d="M132 27C119 23 112 16 106 10C119 10 129 16 132 27Z" fill="#9bddac" fill-opacity=".45"/>
+      <path d="M154 26C144 32 137 38 125 39C131 29 142 25 154 26Z" fill="#81c39f" fill-opacity=".56"/>
+      <path d="M202 23C192 17 184 14 179 6C191 7 200 13 202 23Z" fill="#9bddac" fill-opacity=".64"/>
+      <path d="M228 22C218 27 210 33 201 35C207 25 217 21 228 22Z" fill="#83c1aa" fill-opacity=".58"/>
+      <path d="M272 22C263 17 257 12 253 6C264 7 270 14 272 22Z" fill="#b3df9f" fill-opacity=".62"/>
+    </g>
+  </defs>
+  <use href="#branch"/>
+  <use href="#branch" transform="translate(640 0) scale(-1 1)"/>
+  <path d="M320 16C310 20 311 29 320 32C329 29 330 20 320 16Z" fill="#a3d6b3" fill-opacity=".5"/>
+  <path d="M320 17V31" stroke="#d1e9be" stroke-opacity=".6" stroke-width=".8"/>
+</svg>

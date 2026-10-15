@@ -1,0 +1,138 @@
+/* 額は画像の外側に置き、ゲーム画面と既存の配置を保つ。 */
+.gallery-corner,
+.gallery-expand,
+.gallery-viewer:not([open]) { display: none; }
+
+body.detail-polish .gallery-frame {
+  position: relative;
+  width: min(900px, 100%);
+  margin: 18px auto 0;
+  isolation: isolate;
+}
+body.detail-polish .gallery-frame::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 1px solid rgba(132, 208, 171, .48);
+  border-radius: 22px;
+  pointer-events: none;
+  box-shadow: 0 0 20px rgba(74, 139, 108, .08);
+}
+body.detail-polish .gallery-frame .screenshot-slider {
+  width: 100%;
+  margin: 0;
+  border-color: rgba(149, 215, 181, .65);
+}
+body.detail-polish .gallery-corner {
+  display: block;
+  position: absolute;
+  z-index: 4;
+  width: 24px;
+  height: 24px;
+  background: url("assets/ornament-leaf.svg") center / contain no-repeat;
+  pointer-events: none;
+  opacity: .87;
+}
+body.detail-polish .gallery-corner--tl { left: -28px; top: -14px; transform: rotate(90deg); }
+body.detail-polish .gallery-corner--tr { right: -28px; top: -14px; transform: scaleX(-1) rotate(90deg); }
+body.detail-polish .gallery-corner--bl { left: -28px; bottom: -14px; transform: scaleY(-1) rotate(90deg); }
+body.detail-polish .gallery-corner--br { right: -28px; bottom: -14px; transform: scale(-1) rotate(90deg); }
+body.detail-polish .gallery-expand {
+  display: block;
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  color: #c4e5d5;
+  background: transparent;
+  cursor: zoom-in;
+}
+body.detail-polish .gallery-expand::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  bottom: 6px;
+  width: 12px;
+  height: 12px;
+  background:
+    linear-gradient(currentColor, currentColor) top left / 5px 1px,
+    linear-gradient(currentColor, currentColor) top left / 1px 5px,
+    linear-gradient(currentColor, currentColor) bottom right / 5px 1px,
+    linear-gradient(currentColor, currentColor) bottom right / 1px 5px;
+  background-repeat: no-repeat;
+  opacity: .7;
+}
+body.detail-polish .gallery-expand:focus-visible {
+  outline: 2px solid #b4ecd1;
+  outline-offset: -5px;
+}
+body.detail-polish .gallery-viewer[open] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 10px;
+  width: min(1180px, calc(100vw - 24px));
+  height: min(920px, calc(100dvh - 24px));
+  max-width: none;
+  max-height: calc(100dvh - 24px);
+  margin: auto;
+  padding: 12px;
+  border: 1px solid rgba(149, 215, 181, .7);
+  border-radius: 12px;
+  background: #0c1d1b;
+  color: #e4eee8;
+  box-shadow: 0 16px 70px rgba(0, 0, 0, .65);
+  overflow: hidden;
+}
+body.detail-polish .gallery-viewer::backdrop { background: rgba(2, 10, 10, .88); }
+body.detail-polish .gallery-viewer__header,
+body.detail-polish .gallery-viewer__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+}
+body.detail-polish .gallery-viewer__title { margin: 0; font-size: 14px; letter-spacing: .03em; }
+body.detail-polish .gallery-viewer__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+  background: #07110f;
+}
+body.detail-polish .gallery-viewer button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
+  min-height: 40px;
+  margin: 0;
+  padding: 7px 12px;
+  border: 1px solid rgba(149, 215, 181, .4);
+  border-radius: 6px;
+  color: #e2f1e8;
+  background: #182f28;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+body.detail-polish .gallery-viewer button:hover { background: #254a3d; }
+body.detail-polish .gallery-viewer button:focus-visible { outline: 2px solid #b4ecd1; outline-offset: 3px; }
+body.detail-polish .gallery-viewer__count { font-size: 14px; font-variant-numeric: tabular-nums; }
+@media (max-width: 620px) {
+  body.detail-polish .gallery-frame::before { inset: -4px; border-radius: 21px; }
+  body.detail-polish .gallery-corner { width: 18px; height: 18px; }
+  body.detail-polish .gallery-corner--tl { left: -21px; top: -11px; }
+  body.detail-polish .gallery-corner--tr { right: -21px; top: -11px; }
+  body.detail-polish .gallery-corner--bl { left: -21px; bottom: -11px; }
+  body.detail-polish .gallery-corner--br { right: -21px; bottom: -11px; }
+  body.detail-polish .gallery-viewer[open] { padding: 8px; gap: 7px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.detail-polish .gallery-frame .screenshot-slide { transition: none; transform: none; }
+}

@@ -1,0 +1,46 @@
+/* Botanical ornaments. All typography, layout and original colours remain. */
+body.site-glow.ornament-leaf :is(.card,.download-panel,.music-preview-card) {
+  position: relative;
+}
+body.site-glow.ornament-leaf :is(.card,.download-panel,.music-preview-card)::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    url("assets/ornament-leaf.svg") left top / 32px 32px no-repeat,
+    url("assets/ornament-leaf-mirror.svg") right top / 32px 32px no-repeat;
+  opacity: .8;
+}
+body.site-glow.ornament-leaf .section-head h2 {
+  position: relative;
+  display: table;
+  margin-inline: auto;
+}
+body.site-glow.ornament-leaf .section-head h2::before,
+body.site-glow.ornament-leaf .section-head h2::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 58px;
+  height: 48px;
+  background: url("assets/ornament-leaf.svg") center / contain no-repeat;
+  pointer-events: none;
+  opacity: .95;
+}
+body.site-glow.ornament-leaf .section-head h2::before {
+  right: calc(100% + 20px);
+  transform: translateY(-50%) rotate(-35deg);
+}
+body.site-glow.ornament-leaf .section-head h2::after {
+  left: calc(100% + 20px);
+  /* Mirror the already-rotated left ornament in screen coordinates. */
+  transform: translateY(-50%) scaleX(-1) rotate(-35deg);
+}
+@media (max-width: 620px) {
+  body.site-glow.ornament-leaf .section-head h2::before,
+  body.site-glow.ornament-leaf .section-head h2::after { width: 20px; height: 24px; }
+  body.site-glow.ornament-leaf .section-head h2::before { right: calc(100% + 3px); }
+  body.site-glow.ornament-leaf .section-head h2::after { left: calc(100% + 3px); }
+}

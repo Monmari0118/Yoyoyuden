@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
   renderActivityRecords();
   renderDevlogPage();
   initContactForm();
-  initLeafParticles();
+  if (window.yoyoyudenLeafAtmosphere) window.yoyoyudenLeafAtmosphere.start();
+  else initLeafParticles();
   initScrollReveal();
   initScrollSpy();
 });
@@ -66,6 +67,7 @@ function initLeafParticles() {
   document.body.appendChild(canvas);
 
   const ctx = canvas.getContext("2d");
+  if (!ctx) { canvas.remove(); return null; }
 
   // テーマに合わせた葉の色（緑〜翡翠、たまに金色）
   const LEAF_COLORS = [
@@ -139,6 +141,7 @@ function initLeafParticles() {
   };
 
   const step = () => {
+    if (!running || destroyed) return;
     ctx.clearRect(0, 0, width, height);
 
     for (const leaf of leaves) {
@@ -159,18 +162,34 @@ function initLeafParticles() {
   };
 
   let animationId = 0;
+  let running = true;
+  let destroyed = false;
 
   resize();
   window.addEventListener("resize", resize);
   animationId = window.requestAnimationFrame(step);
 
   // 途中で「動きを減らす」に切り替えた場合は停止して消す
-  reducedMotion.addEventListener("change", (event) => {
+  const onMotionChange = (event) => {
     if (event.matches) {
-      window.cancelAnimationFrame(animationId);
-      canvas.remove();
+      destroy();
     }
-  });
+  };
+  const destroy = () => {
+    destroyed = true;
+    running = false;
+    window.cancelAnimationFrame(animationId);
+    window.removeEventListener("resize", resize);
+    reducedMotion.removeEventListener("change", onMotionChange);
+    canvas.remove();
+  };
+  reducedMotion.addEventListener("change", onMotionChange);
+  return { destroy, setActive(next) {
+    if (destroyed || running === next) return;
+    running = next;
+    if (running) animationId = window.requestAnimationFrame(step);
+    else window.cancelAnimationFrame(animationId);
+  } };
 }
 
 /* ===== スクロールで要素をふわっと表示 ===== */
@@ -314,7 +333,7 @@ function initSmoothScroll() {
 
       window.scrollTo({
         top: targetTop,
-        behavior: "smooth"
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
       });
 
       window.history.pushState(null, "", hash);
@@ -371,6 +390,8 @@ function setupSlider(slider, type) {
 
   let currentIndex = 0;
   let timerId = 0;
+  const pauseReasons = new Set();
+  const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   const showSlide = (nextIndex) => {
     slides[currentIndex].classList.remove("is-active");
@@ -383,17 +404,33 @@ function setupSlider(slider, type) {
   };
 
   const startTimer = () => {
+    window.clearInterval(timerId);
     // 「動きを減らす」設定のときは自動送りをせず、ドット操作だけにする
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (pauseReasons.size || motionPreference.matches) {
       return;
     }
-
-    window.clearInterval(timerId);
 
     timerId = window.setInterval(() => {
       showSlide((currentIndex + 1) % slides.length);
     }, type.interval);
   };
+
+  // プレビューの画像拡大中は同じ画像で止め、閉じたあとに自動送りを再開する。
+  slider.addEventListener("yoyoyuden:slider-pause", (event) => {
+    const detail = event.detail || {};
+    const reason = detail.reason || "external";
+    if (detail.pause) pauseReasons.add(reason);
+    else pauseReasons.delete(reason);
+    startTimer();
+  });
+  slider.addEventListener("yoyoyuden:slider-select", (event) => {
+    const nextIndex = event.detail && event.detail.index;
+    if (Number.isInteger(nextIndex) && nextIndex >= 0 && nextIndex < slides.length) {
+      showSlide(nextIndex);
+      startTimer();
+    }
+  });
+  motionPreference.addEventListener("change", startTimer);
 
   dots.forEach((dot, index) => {
     dot.addEventListener("click", () => {

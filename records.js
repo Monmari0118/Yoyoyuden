@@ -111,6 +111,12 @@ window.yoyoyudenRecords = {
   ],
 
   updates: [
+    {
+      date: "2026-10-15",
+      label: "2026.10.15",
+      title: "",
+      text: "サイトの見た目をブラッシュアップしました。"
+    },
                                       {
       date: "2026-07-16",
       label: "2026.07.16",
