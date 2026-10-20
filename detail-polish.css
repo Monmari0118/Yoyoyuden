@@ -56,3 +56,78 @@ body.detail-polish .download-notice .download-notice-basis {
 @media (max-width: 620px) {
   body.detail-polish .download-notice { padding: 14px 16px; }
 }
+
+/* Keep each tool name together and give the longer middle card more room. */
+body.detail-polish .quick-info {
+  scroll-margin-top: 160px;
+  max-width: 980px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 16px;
+  text-align: center;
+}
+body.detail-polish .quick-info > .quick-info-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  min-width: 0;
+  padding: 22px;
+  border-color: rgba(157, 205, 181, .42);
+  background: rgba(10, 26, 27, .92);
+}
+body.detail-polish .quick-info dt {
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: .04em;
+  color: #c1ddcf;
+}
+body.detail-polish .quick-info dd {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.6;
+}
+body.detail-polish .quick-tool-list {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  justify-content: center;
+  gap: 6px 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+body.detail-polish .quick-tool-list li {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  font-size: 16px;
+  line-height: 1.65;
+  white-space: nowrap;
+}
+body.detail-polish .quick-info .quick-release {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+body.detail-polish .quick-release-status {
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: rgba(148, 218, 180, .12);
+  color: #c6f2db;
+  font-size: 15px;
+  line-height: 1.7;
+}
+@media (max-width: 860px) {
+  body.detail-polish .quick-info {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 560px;
+    scroll-margin-top: 280px;
+    gap: 12px;
+  }
+  body.detail-polish .quick-info > .quick-info-card { padding: 18px 20px; }
+}
+
+@media (max-width: 420px) {
+  body.detail-polish .quick-tool-list { grid-template-columns: minmax(0, 1fr); }
+}

@@ -30,7 +30,7 @@
 
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="ornament-leaf.css?v=20261015">
-  <link rel="stylesheet" href="detail-polish.css?v=20261019">
+  <link rel="stylesheet" href="detail-polish.css?v=20261020-2">
   <link rel="stylesheet" href="gallery-polish.css?v=20261015">
   <link rel="stylesheet" href="music-polish.css?v=20261015">
 </head>
@@ -106,18 +106,28 @@
           <a class="button" href="#game">ゲーム紹介を見る</a>
         </div>
 
-        <dl class="quick-info">
-          <div>
+        <dl class="quick-info" id="quick-info">
+          <div class="quick-info-card">
             <dt>ジャンル</dt>
             <dd>未来選択型RPG</dd>
           </div>
-          <div>
+          <div class="quick-info-card quick-info-tools">
             <dt>制作ツール</dt>
-            <dd>RPGツクールMZ / Cubase / Clip Studio Paint / Codex AIツール </dd>
+            <dd>
+              <ul class="quick-tool-list">
+                <li>RPGツクールMZ</li>
+                <li>Cubase</li>
+                <li>Clip Studio Paint</li>
+                <li>Codex AIツール</li>
+              </ul>
+            </dd>
           </div>
-          <div>
+          <div class="quick-info-card">
             <dt>公開状況</dt>
-            <dd>体験版 0.42 公開中</dd>
+            <dd class="quick-release">
+              <span class="quick-release-version">体験版 0.42</span>
+              <span class="quick-release-status">公開中</span>
+            </dd>
           </div>
         </dl>
       </div>
