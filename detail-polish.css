@@ -26,3 +26,33 @@ body.detail-polish main > .section:not(.notice-section)::after {
 @media (max-width: 620px) {
   body.detail-polish main > .section:not(.notice-section)::after { height: 32px; bottom: -6px; }
 }
+
+/* A static notice for the main game's download panel. */
+body.detail-polish .download-notice {
+  grid-column: 1 / -1;
+  min-width: 0;
+  padding: 18px 20px;
+  border: 1px solid rgba(148, 208, 180, .46);
+  border-left: 3px solid #b7dbc3;
+  border-radius: 12px;
+  background: rgba(9, 28, 26, .5);
+  text-align: left;
+}
+body.detail-polish .download-notice p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.85;
+}
+body.detail-polish .download-notice .download-notice-title {
+  margin-bottom: 4px;
+  font-size: 18px;
+  color: #d4eddc;
+}
+body.detail-polish .download-notice .download-notice-basis {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #c2d7cd;
+}
+@media (max-width: 620px) {
+  body.detail-polish .download-notice { padding: 14px 16px; }
+}

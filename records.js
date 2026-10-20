@@ -116,6 +116,12 @@ window.yoyoyudenRecords = {
   ],
 
   updates: [
+        {
+      date: "2026-10-20",
+      label: "2026.10.20",
+      title: "",
+      text: "当サイトのQ&A、制作ツールの説明を追記しました。"
+    },
     {
       date: "2026-10-15",
       label: "2026.10.15",
