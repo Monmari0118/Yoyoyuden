@@ -128,3 +128,34 @@ body.detail-polish .quick-release-status {
 @media (max-width: 420px) {
   body.detail-polish .quick-tool-list { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* A permanent AI-use notice, separate from the first-visit welcome screen. */
+body.detail-polish .main-ai-notice {
+  max-width: 780px;
+  margin: 24px auto 0;
+  padding: 16px 20px;
+  border: 1px solid rgba(157, 205, 181, .42);
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at top left, rgba(142, 255, 224, 0.07), transparent 45%),
+    rgba(22, 29, 42, 0.88);
+  text-align: center;
+  scroll-margin-top: 160px;
+}
+body.detail-polish .main-ai-notice h2 {
+  margin: 0 0 6px;
+  color: #d4eddc;
+  font-size: 18px;
+  line-height: 1.6;
+}
+body.detail-polish .main-ai-notice p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.85;
+}
+@media (max-width: 620px) {
+  body.detail-polish .main-ai-notice {
+    padding: 14px 16px;
+    scroll-margin-top: 280px;
+  }
+}
