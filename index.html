@@ -33,6 +33,7 @@
   <link rel="stylesheet" href="detail-polish.css?v=20261025-2">
   <link rel="stylesheet" href="gallery-polish.css?v=20261015">
   <link rel="stylesheet" href="music-polish.css?v=20261015">
+  <link rel="stylesheet" href="news-ticker.css?v=20261026-2">
 </head>
 
 <body class="site-glow ornament-leaf detail-polish">
@@ -84,6 +85,14 @@
     </div>
   </header>
   <main id="top">
+    <aside class="news-ticker" aria-labelledby="news-ticker-title">
+      <div class="container news-ticker-inner">
+        <h2 id="news-ticker-title">お知らせ</h2>
+        <div class="news-ticker-viewport" id="news-ticker-items" aria-live="off">
+          <a class="news-ticker-fallback" href="#update-history">最新の更新履歴を見る</a>
+        </div>
+      </div>
+    </aside>
     <section class="hero">
       <div class="container hero-inner">
         <p class="label">東方自然癒 三次創作 / 非公式ファン作品</p>
@@ -388,9 +397,9 @@
             </div>
           </section>
 
-          <section class="activity-card scroll-card">
+          <section class="activity-card scroll-card" id="update-history" aria-labelledby="update-history-title">
             <div class="card-head-row">
-              <h3>更新履歴</h3>
+              <h3 id="update-history-title">更新履歴</h3>
             </div>
 
             <div class="scroll-area" data-record-type="updates">
@@ -582,6 +591,7 @@
   <script src="leaf-textures.js?v=20261015"></script>
   <script src="leaf-atmosphere.js?v=20261015"></script>
   <script src="script.js?v=20261015"></script>
+  <script src="news-ticker.js?v=20261026-3"></script>
   <script src="gallery-polish.js?v=20261015"></script>
   <script src="music-polish.js?v=20261015"></script>
 </body>

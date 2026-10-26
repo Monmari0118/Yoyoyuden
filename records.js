@@ -126,6 +126,12 @@ window.yoyoyudenRecords = {
   ],
 
   updates: [
+                {
+      date: "2026-10-26",
+      label: "2026.10.26",
+      title: "",
+      text: "当サイトトップにお知らせ速報を追加しました。"
+    },
             {
       date: "2026-10-25",
       label: "2026.10.25",
