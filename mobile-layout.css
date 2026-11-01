@@ -1,0 +1,259 @@
+/* Desktop at normal widths keeps the existing stylesheet and layout. */
+.view-strip,
+.view-footer-switch,
+.mobile-nav-toggle {
+  display: none;
+}
+
+html[data-site-view="desktop"] body {
+  min-width: 1280px;
+}
+
+html[data-compact-screen="true"] .view-strip {
+  display: block;
+  border-bottom: 1px solid rgba(157, 205, 181, .28);
+  background: #10232b;
+  color: #d4eddc;
+}
+
+.view-strip-inner {
+  width: calc(100% - 32px);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: calc(8px * var(--view-ui-scale, 1));
+  padding-block: calc(8px * var(--view-ui-scale, 1));
+  font-size: calc(12px * var(--view-ui-scale, 1));
+  line-height: 1.6;
+}
+
+.view-mode-toggle,
+.mobile-nav-toggle {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid rgba(157, 205, 181, .5);
+  border-radius: 6px;
+  background: rgba(22, 29, 42, .92);
+  color: #eef3ff;
+  font: 700 14px / 1.5 "Zen Kaku Gothic New", system-ui, sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.view-mode-toggle {
+  flex: none;
+  min-height: calc(44px * var(--view-ui-scale, 1));
+  padding: calc(8px * var(--view-ui-scale, 1)) calc(12px * var(--view-ui-scale, 1));
+  font-size: calc(14px * var(--view-ui-scale, 1));
+}
+
+.view-mode-toggle:focus-visible,
+.mobile-nav-toggle:focus-visible {
+  outline: 2px solid #a4fff0;
+  outline-offset: 3px;
+}
+
+html[data-compact-screen="true"] .view-footer-switch {
+  display: block;
+  margin: 16px;
+  text-align: center;
+}
+
+@media (max-width: 980px) {
+  html:not([data-site-view="desktop"]) {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  html:not([data-site-view="desktop"]) body.site-glow .container {
+    width: calc(100% - 32px);
+  }
+
+  html:not([data-site-view="desktop"]) body.site-glow :is(.card, .download-panel, .pv-card, .activity-card, .staff-card, .contact-card > div, .qa-item, .devlog-article, .zip-card) {
+    min-width: 0;
+  }
+
+  /* Reflow desktop hard breaks; keep paragraph breaks and original text. */
+  html:not([data-site-view="desktop"]) .prose-line-break {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 620px) {
+  html:not([data-site-view="desktop"]) body.site-glow .header-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    width: calc(100% - 32px);
+    gap: 8px 12px;
+    padding: 8px 0;
+  }
+
+  html:not([data-site-view="desktop"]) body.site-glow .site-title {
+    display: block !important;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  html:not([data-site-view="desktop"]) .mobile-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+  }
+
+  html:not([data-site-view="desktop"]) body.site-glow .site-nav {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: minmax(44px, auto);
+    gap: 6px 8px;
+    padding-bottom: 4px;
+  }
+
+  html:not([data-site-view="desktop"])[data-mobile-nav-ready="true"] body.site-glow .site-nav[data-mobile-open="false"] {
+    display: none;
+  }
+
+  html:not([data-site-view="desktop"]) body.site-glow .site-nav a:nth-child(n) {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    min-height: 44px;
+    padding: 8px 4px;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: normal;
+  }
+
+  html:not([data-site-view="desktop"]) body.site-glow .section {
+    padding-block: 40px;
+  }
+
+  html:not([data-site-view="desktop"]) main#top {
+    scroll-margin-top: 76px;
+  }
+
+  html:not([data-site-view="desktop"]) body.site-glow .section-head {
+    margin-bottom: 24px;
+  }
+
+  html:not([data-site-view="desktop"]) body.site-glow .section-head h2 {
+    max-width: calc(100% - 50px);
+    font-size: clamp(23px, 6.3vw, 30px);
+    line-height: 1.5;
+    text-wrap: balance;
+    overflow-wrap: normal;
+    word-break: normal;
+    line-break: strict;
+  }
+
+  html:not([data-site-view="desktop"]) body.site-glow .lead {
+    font-size: 16px;
+    line-height: 1.9;
+    text-wrap: pretty;
+  }
+
+  html:not([data-site-view="desktop"]) body.site-glow .hero-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  html:not([data-site-view="desktop"]) body.site-glow .hero-buttons .button {
+    min-width: 0;
+    padding: 12px 6px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  html:not([data-site-view="desktop"]) body.detail-polish .quick-info {
+    max-width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    scroll-margin-top: 84px;
+  }
+
+  html:not([data-site-view="desktop"]) body.detail-polish .quick-info > .quick-info-card {
+    padding: 18px 12px;
+  }
+
+  html:not([data-site-view="desktop"]) body.detail-polish .quick-tool-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 10px;
+    width: 100%;
+  }
+
+  html:not([data-site-view="desktop"]) body.detail-polish .quick-tool-list li {
+    font-size: 14px;
+    white-space: normal;
+  }
+
+  html:not([data-site-view="desktop"]) body.site-glow :is(.card, .pv-card, .activity-card, .staff-card, .qa-item, .devlog-article, .download-panel) {
+    padding: 20px;
+  }
+
+  html:not([data-site-view="desktop"]) body.detail-polish .main-ai-notice {
+    padding: 16px;
+  }
+
+  html:not([data-site-view="desktop"]) body.detail-polish .main-ai-notice h2 {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  html:not([data-site-view="desktop"]) body.detail-polish .main-ai-notice p {
+    font-size: 15px;
+    line-height: 1.9;
+  }
+
+  html:not([data-site-view="desktop"]) body.detail-polish .main-ai-notice .survey-invite {
+    text-align: center;
+  }
+
+  html:not([data-site-view="desktop"]) body.site-glow .download-action {
+    align-items: center;
+    text-align: center;
+  }
+
+  html:not([data-site-view="desktop"]) body.site-glow .download-action .button {
+    max-width: 100%;
+    min-width: 0;
+    width: min(100%, 300px);
+  }
+
+  html:not([data-site-view="desktop"]) body.site-glow .devlog-head {
+    display: grid;
+    gap: 6px;
+  }
+
+  html:not([data-site-view="desktop"]) body.site-glow .devlog-head h2 {
+    font-size: 20px;
+    line-height: 1.6;
+    text-wrap: balance;
+  }
+
+  html:not([data-site-view="desktop"]) body.site-glow :is(.devlog-text, .qa-answer) {
+    font-size: 16px;
+    line-height: 2;
+    line-break: strict;
+  }
+
+  html:not([data-site-view="desktop"]) body.site-glow .qa-question {
+    font-size: 17px;
+    gap: 10px;
+  }
+
+  html:not([data-site-view="desktop"]) body.detail-polish :is(.main-ai-notice, #update-history, [data-news-record]) {
+    scroll-margin-top: 84px;
+  }
+
+  html:not([data-site-view="desktop"]) .welcome-gate {
+    align-items: start;
+    padding: 16px;
+  }
+
+  html:not([data-site-view="desktop"]) .welcome-card {
+    margin-block: auto;
+    padding: 24px 20px;
+  }
+}

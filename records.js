@@ -126,6 +126,12 @@ window.yoyoyudenRecords = {
   ],
 
   updates: [
+        {
+      "date": "2026-11-01",
+      "label": "2026.11.01",
+      "title": "",
+      "text": "スマホ向けにHPを整理しました。PCでの表示に変更はありません。"
+    },
     {
       "date": "2026-11-01",
       "label": "2026.11.01",
