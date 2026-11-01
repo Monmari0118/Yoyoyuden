@@ -101,6 +101,9 @@ body.detail-polish .quick-tool-list li {
   line-height: 1.65;
   white-space: nowrap;
 }
+body.detail-polish .quick-tool-list li:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
 body.detail-polish .quick-info .quick-release {
   display: flex;
   flex-direction: column;

@@ -127,6 +127,12 @@ window.yoyoyudenRecords = {
 
   updates: [
     {
+      "date": "2026-11-01",
+      "label": "2026.11.01",
+      "title": "",
+      "text": "制作日記「進捗報告&AI利用範囲について」を更新しました。"
+    },
+    {
       date: "2026-10-30",
       label: "2026.10.30",
       title: "",
