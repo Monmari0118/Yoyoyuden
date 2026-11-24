@@ -154,7 +154,14 @@ body.detail-polish .main-ai-notice h2 {
 body.detail-polish .main-ai-notice p {
   margin: 0;
   font-size: 16px;
+  font-weight: 700;
   line-height: 1.85;
+}
+body.detail-polish .main-ai-notice p strong {
+  font-weight: inherit;
+}
+body.detail-polish .main-ai-notice > p + p {
+  margin-top: 0.65em;
 }
 @media (max-width: 620px) {
   body.detail-polish .main-ai-notice {
